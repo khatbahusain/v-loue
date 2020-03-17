@@ -1,0 +1,51 @@
+<div class="container">
+
+<div class="row">
+  <% if current_user %>
+  <%= link_to "Se deconnecter",destroy_user_session_path, :method => :delete, class: "dropdown-item font-weight-bold shadowgrey" %>
+  id : <%= @user.id %><br>
+  email : <%= @user.email %> <br>
+  firs name : <%= @user.first_name %><br>
+  last name : <%= @user.last_name %><br>
+  <a href="<%= user_path(current_user.id) %>"><img src="https://images.pexels.com/photos/3797438/pexels-photo-3797438.jpeg?cs=srgb&dl=femme-visage-levres-regarder-3797438.jpg&fm=jpg" class="d-inline-block align-top rounded" width= 200px, height= 200px></a><br>
+  <% end %>
+  <%= link_to"envoyer un message" %><hr>
+</div>
+
+<p>my cart: </p>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">prix</th>
+      <th scope="col">payed?</th>
+      <th scope="col">bike</th>
+      <th scope="col">Date d'ajoute</th>
+    </tr>
+  </thead>
+
+
+  <% @total = 0 %>
+  <% @carts.each do |cart| %> 
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td> <%= cart.prix %> €</td>
+      <% @total = @total + cart.prix %>
+      <td> <%= cart.payed %></td>
+      <td> <%= cart.bike_id %></td>
+      <td> <%= cart.created_at %></td>
+      <td><a href="<%= rent_path(cart.id) %>" class="btn btn-outline-danger" data-method="DELETE">Delete</a></td>
+
+
+
+    </tr>
+  </tbody>
+  <% end %>
+
+</table>
+total : <%= @total %> €
+
+
+</div>
+</div>

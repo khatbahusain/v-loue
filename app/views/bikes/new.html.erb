@@ -1,0 +1,26 @@
+<p>Mes Vélos:</p> 
+<% @bikes.each do |bike| %>
+  <%= bike %><br>
+  <% end %>
+
+<div class="container p-3 my-3 border">
+<%= form_tag bikes_path ,multipart: true do %>
+  <h3>ajouter un vélo</h3>
+    <div class="form-group row">
+      <label for="example-text-input" class="col-2 col-form-label">plus sur mon vélo</label>
+      <div class="col-10">
+      <%= text_area_tag :'more_info',"", class: 'form-control' %>
+      </div>
+    </div
+    <div class="form-group row">
+    <label for="example-text-input" class="col-2 col-form-label">photo</label>
+      <div class="col-10">
+      <%= file_field_tag :'bike_pic' , class: "btn btn-dark center-block"%>
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= submit_tag "Create" , class: "btn btn-dark center-block"%>
+    </div>
+<% end %>
+</div>
+

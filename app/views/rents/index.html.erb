@@ -1,0 +1,36 @@
+<div class="container">
+<p>all propositions: </p>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">photo</th>
+      <th scope="col">prix</th>
+
+      <th scope="col">date dispo</th>
+
+    </tr>
+  </thead>
+  <% @rents.each do |rent| %>
+  <tbody>
+    <tr>
+      <th scope="row"><img src="https://contents.mediadecathlon.com/p1278143/k$dd7204716b2fd0403424dec3fdcc6c8b/sq/V+LO+TOUT+CHEMIN+RIVERSIDE+100+NOIR.webp?f=1000x1000" width=75px height=75px></th>
+
+      <td><%= rent.prix %> €/day </td>
+      <td>
+      <%= link_to"show more", rent_path(rent.id)%></td>
+
+      <td><%=  form_tag(rent_path(rent.id), method: "patch", rent_id: rent.id) do  %>
+        <%= submit_tag "add to cart " %><i class="fas fa-plus"></i></td>
+        <% end %>
+      
+
+ 
+
+      <td>
+      <%=  rent.created_at %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
+</div>
