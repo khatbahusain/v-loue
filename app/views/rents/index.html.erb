@@ -19,13 +19,23 @@
       <td>
       <%= link_to"show more", rent_path(rent.id)%></td>
 
-      <td><%=  form_tag(rent_path(rent.id), method: "patch", rent_id: rent.id) do  %>
-        <%= submit_tag "add to cart " %><i class="fas fa-plus"></i></td>
-        <% end %>
-      
+      <% if user_signed_in? && Rent.find_by(id: rent.id, user_id: current_user.id) %>
+<td><%=  form_tag(rent_path(rent.id), method: "patch", rent_id: rent.id) do  %>
+  <%= submit_tag "already cart " %>
+  <a href="<%= rent_path(rent.id) %>" class="btn btn-outline-danger" data-method="DELETE">Delete</a></td>
+  <% end %>
 
- 
+  <% elsif user_signed_in? %>
+  <td><%=  form_tag(rent_path(rent.id), method: "patch", rent_id: rent.id) do  %>
+    <%= submit_tag "add to cart " %></td>
+    <% end %>
 
+<% else %>
+<td><%=  form_tag(rent_path(rent.id), method: "patch", rent_id: rent.id) do  %>
+  <%= submit_tag "sing in to add to cart " %></td>
+  <% end %>
+<% end %>
+    
       <td>
       <%=  rent.created_at %></td>
     </tr>

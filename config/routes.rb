@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :rents, only: [:new, :create, :index, :show, :update, :destroy]
 
   resources :bikes, only: [:new, :create, :show, :destroy]
-
+  resources :charges
   root to: 'pages#index'
 
   get 'pages/contact'

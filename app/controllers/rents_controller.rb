@@ -1,6 +1,9 @@
 class RentsController < ApplicationController
+  before_action :authenticate_user!, except: :index
+
   def index
-    @rents = Rent.where(payed: false).where.not(bike_id: Bike.where(user_id: current_user.id))
+    @rents = Rent.where(payed: false)
+    #.where.not(bike_id: Bike.where(user_id: current_user.id))
   end
 
   def show
@@ -19,9 +22,9 @@ class RentsController < ApplicationController
     Rent.find(params[:id]).update(user_id: current_user.id)
   end
 
-
   def destroy
-    Rent.find(params[:id]).destroy
+    puts "destroy" * 100
+    Rent.find(params[:id]).update(user_id: nil)
   end
 
 
