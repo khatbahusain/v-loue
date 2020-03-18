@@ -1,4 +1,0 @@
-class CartsController < ApplicationController
-
-
-end
