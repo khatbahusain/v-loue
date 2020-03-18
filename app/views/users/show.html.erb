@@ -1,16 +1,28 @@
 <div class="container">
 
-<div class="row">
-  <% if current_user %>
-  <%= link_to "Se deconnecter",destroy_user_session_path, :method => :delete, class: "dropdown-item font-weight-bold shadowgrey" %>
-  id : <%= @user.id %><br>
-  email : <%= @user.email %> <br>
-  firs name : <%= @user.first_name %><br>
-  last name : <%= @user.last_name %><br>
-  <a href="<%= user_path(current_user.id) %>"><img src="https://images.pexels.com/photos/3797438/pexels-photo-3797438.jpeg?cs=srgb&dl=femme-visage-levres-regarder-3797438.jpg&fm=jpg" class="d-inline-block align-top rounded" width= 200px, height= 200px></a><br>
-  <% end %>
-  <%= link_to"envoyer un message" %><hr>
+<div class="row border">
+
+<div class="col-4">
+    <% if current_user %>
+    
+    id : <%= @user.id %><br>
+    <span class="text-muted">email :</span> <%= @user.email %> <br>
+    <span class="text-muted">firs name :</span> <%= @user.first_name %><br>
+    <span class="text-muted">last name :</span> <%= @user.last_name %><br>
+    <span class="text-muted">date de naissance :</span> <%= @user.id %><br>
 </div>
+  <div class="col-4"></div>
+  <div class="col-4>
+     <a href="<%= user_path(current_user.id) %>"><img src="https://images.pexels.com/photos/3797438/pexels-photo-3797438.jpeg?cs=srgb&dl=femme-visage-levres-regarder-3797438.jpg&fm=jpg" class="rounded mr-0" width= 200px, height= 200px></a>
+  </div>
+</div>
+
+    <div class="row">
+      <%= link_to "envoyer un message", root_path, class: "btn btn-outline-dark" %>
+      <%= link_to "Se deconnecter",destroy_user_session_path, :method => :delete, class: "btn btn-outline-dark" %>
+    </div>
+      <% end %>
+
 
 <p>my cart: </p>
 <table class="table table-dark">
@@ -24,9 +36,10 @@
     </tr>
   </thead>
 
-
   <% @total = 0 %>
   <% @carts.each do |cart| %> 
+
+
   <tbody>
     <tr>
       <th scope="row">1</th>
@@ -36,16 +49,39 @@
       <td> <%= cart.bike_id %></td>
       <td> <%= cart.created_at %></td>
       <td><a href="<%= rent_path(cart.id) %>" class="btn btn-outline-danger" data-method="DELETE">Delete</a></td>
-
-
-
     </tr>
   </tbody>
   <% end %>
-
 </table>
-total : <%= @total %> €
+total à régler : <%= @total %> €
+
+<hr>
+
+
+<p>mes velos: </p>
+<%= link_to"ajouter un vélo", new_bike_path %>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">bike id</th>
+      <th scope="col">more info</th>
+
+    </tr>
+  </thead>
+  <% @bikes.each do |bike| %> 
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td> <%= bike.id %></td>
+      <td> <%= bike.more_info %></td>
+      <td><a href="<%= bike_path(bike.id) %>" class="btn btn-outline-danger" data-method="DELETE">Delete</a></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
 
 
 </div>
-</div>
+
