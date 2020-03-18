@@ -5,7 +5,6 @@
     <tr>
       <th scope="col">photo</th>
       <th scope="col">prix</th>
-
       <th scope="col">date dispo</th>
 
     </tr>
@@ -13,7 +12,18 @@
   <% @rents.each do |rent| %>
   <tbody>
     <tr>
-      <th scope="row"><img src="https://contents.mediadecathlon.com/p1278143/k$dd7204716b2fd0403424dec3fdcc6c8b/sq/V+LO+TOUT+CHEMIN+RIVERSIDE+100+NOIR.webp?f=1000x1000" width=75px height=75px></th>
+
+    
+
+      
+
+
+
+
+
+
+  
+      <th scope="row"><%= image_tag Bike.find(rent.bike_id).avatar, alt: 'avatar' ,width: '200px', height: '200px'%></th>
 
       <td><%= rent.prix %> €/day </td>
       <td>
