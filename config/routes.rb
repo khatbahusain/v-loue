@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   
-  resources :users, only: [:show, :update] do
+  resources :users, only: [:show, :update, :edit] do
     resources :avatars, only: [:create]
   end
 

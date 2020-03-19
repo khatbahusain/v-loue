@@ -5,15 +5,13 @@
   <p>=== Il n'y a pas encore d'avatar lié à cet utilisateur ===</p>
 <%end%>
 
-
 <h3>Changer d'avatar ?</h3>
 <%= form_tag user_avatars_path(@user), multipart: true do %>
   <%= file_field_tag :avatar %>
   <%= submit_tag "mettre à jour" %>
 <% end %>
 
-
-
+<%= link_to"edit profile", edit_user_path %>
 
 
 <div class="container">
@@ -99,6 +97,35 @@ total à régler : <%= @total %> €
   <% end %>
 </table>
 
+
+
+
+
+
+
+
+<p>mes locations payées: </p>
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">bike id</th>
+      <th scope="col">more info</th>
+
+    </tr>
+  </thead>
+  <% @rents.each do |rent| %> 
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      
+      <td><%= image_tag Bike.find(rent.bike_id).avatar, alt: 'avatar' ,width: '200px', height: '200px'%></td>
+
+    </tr>
+  </tbody>
+  <% end %>
+</table>
 
 
 </div>

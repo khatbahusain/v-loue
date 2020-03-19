@@ -12,9 +12,15 @@ class RentsController < ApplicationController
 
   def new
     @rent = Rent.new
+    @mybikes = Bike.where(user_id: current_user.id)
   end
 
   def create
+    
+    puts 'create' * 100
+    puts params
+    puts 'create' * 100
+    
     Rent.create(prix: params[:prix], created_at: params[:created_at], bike_id: params[:bike_id], payed: false)
   end
 

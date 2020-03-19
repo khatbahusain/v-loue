@@ -1,18 +1,31 @@
+<% if @mybikes.length == 0 %>
+you dont have bike yet
 
-<div class="container p-3 my-3 border">
+<% else %>
+
+
+  <div class="container p-3 my-3 border">
 <%= form_tag rents_path ,multipart: true do %>
 
+
     <div class="form-group row">
-      <label for="example-text-input" class="col-2 col-form-label">bike id</label>
+      <label for="example-text-input" class="col-2 col-form-label">choose one of your bikes</label>
       <div class="col-10">
-      <%= number_field_tag :'bike_id',"", class: 'form-control' %>
+      <% @mybikes.each do |mybike| %>
+    
+        <%= @bikeimg = image_tag Bike.find(mybike.id).avatar, alt: 'bike' ,width: '200px', height: '200px'%>
+
+        <%= radio_button_tag 'bike_id', mybike.id, checked: true  %><br>
+
+        <% end %>
       </div>
     </div>
+
 
     <div class="form-group row">
     <label for="example-text-input" class="col-2 col-form-label">prix</label>
       <div class="col-10">
-      <%= number_field_tag :'prix' ,"", class: "btn btn-dark center-block"%> €/per day    
+      <%= number_field_tag :'prix' ,"", class: ""%> €/per day    
       </div>
     </div>
 
@@ -31,3 +44,7 @@
 
 
       
+<% end %>
+
+
+

@@ -19,6 +19,8 @@ class ChargesController < ApplicationController
       description: 'Rails Stripe customer',
       currency: 'usd',
     })
+
+    Rent.where(user_id: current_user.id).update(payed: true)
   
   rescue Stripe::CardError => e
     flash[:error] = e.message
