@@ -1,0 +1,26 @@
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">prix</th>
+      <th scope="col">payed?</th>
+      <th scope="col">bike</th>
+      <th scope="col">Date d'ajoute</th>
+    </tr>
+  </thead>
+  <% @total = 0 %>
+  <% @carts.each do |cart| %> 
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td> <%= cart.prix %> €</td>
+      <% @total = @total + cart.prix %>
+      <td> <%= cart.payed %></td>
+      <td> <%= image_tag Bike.find(cart.bike_id).avatar, alt: 'avatar' ,width: '100px', height: '100px'%></td>
+      <td> <%= cart.created_at %></td>
+      <td><a href="<%= rent_path(cart.id) %>" class="btn btn-outline-danger" data-method="DELETE">Delete</a></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+total à régler : <%= @total %> €

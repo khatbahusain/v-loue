@@ -1,132 +1,107 @@
-<h3>Avatar actuel</h3>
-<%if @user.avatar.attached?%>
-  <%= image_tag @user.avatar, alt: 'avatar' ,width: '200px', height: '200px'%>
-<%else%>
-  <p>=== Il n'y a pas encore d'avatar lié à cet utilisateur ===</p>
-<%end%>
+<div class="container-fluid overcover">
+        <div class="container profile-box">
+            <div class="top-cover">
+                <div class="covwe-inn">
+                    <div class="row no-margin">
+                        <div class="col-md-3 img-c">
+                            <img src="assets/images/profile.jpg" alt="">
+                        </div>
+                        <div class="col-md-9 tit-det">
+                        <%= render "avatar" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Ma Cart</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#resume" role="tab" aria-controls="profile" aria-selected="false">Mes Locations</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="profile" aria-selected="false">Mes Vélos</a>
+              </li>            
+            </ul>
 
-<h3>Changer d'avatar ?</h3>
-<%= form_tag user_avatars_path(@user), multipart: true do %>
-  <%= file_field_tag :avatar %>
-  <%= submit_tag "mettre à jour" %>
-<% end %>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <div class="row no-margin home-det">
+                      <div class="col-md-8 home-dat">                                     
+                      <div class="jumbo-address">
+                         <div class="row no-margin">
+                                  <div class="col-lg-6 no-padding">
 
-<%= link_to"edit profile", edit_user_path %>
+                                  <table class="addrss-list">
+                                      <tbody><tr>
+                                          <th>Prénom</th>
+                                          <td><%= @user.first_name %></td>
+                                      </tr>
+                                      <tr>
+                                          <th>Nom</th>
+                                          <td><%= @user.last_name %></td>
+                                      </tr>
+                                      <tr>
+                                          <th>Email</th>
+                                          <td><%= @user.email %></td>
+                                      </tr>
+                                      <tr>
+                                        <th>Date de naissance</th>
+                                        <td>09-06-1989</td>
+                                    </tr>
+                                  </tbody></table>
+                                  <%= link_to "envoyer un message", root_path, class: "btn btn-outline-dark" %>
+                                  <%= link_to "Se deconnecter",destroy_user_session_path, :method => :delete, class: "btn btn-outline-dark" %>
+                                  <%= link_to"edit profile", edit_user_path %>
+                          </div>
+                         
+                         </div>
 
+                      </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="tab-pane fade exp-cover" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                  <div class="data-box">
+                          <div class="sec-title">
+                                        <h2>Ma Cart</h2>
+                                  </div>
 
-<div class="container">
-
-<div class="row border">
-
-<div class="col-4">
-    <% if current_user %>
-    
-    id : <%= @user.id %><br>
-    <span class="text-muted">email :</span> <%= @user.email %> <br>
-    <span class="text-muted">firs name :</span> <%= @user.first_name %><br>
-    <span class="text-muted">last name :</span> <%= @user.last_name %><br>
-    <span class="text-muted">date de naissance :</span> <%= @user.id %><br>
-</div>
-  <div class="col-4"></div>
-  <div class="col-4>
-     <a href="<%= user_path(current_user.id) %>"><img src="" class="rounded mr-0" width= 200px, height= 200px></a>
-  </div>
-</div>
-
-    <div class="row">
-      <%= link_to "envoyer un message", root_path, class: "btn btn-outline-dark" %>
-      <%= link_to "Se deconnecter",destroy_user_session_path, :method => :delete, class: "btn btn-outline-dark" %>
-    </div>
-      <% end %>
-
-
-<p>my cart: </p>
-<table class="table table-dark">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">prix</th>
-      <th scope="col">payed?</th>
-      <th scope="col">bike</th>
-      <th scope="col">Date d'ajoute</th>
-    </tr>
-  </thead>
-
-  <% @total = 0 %>
-  <% @carts.each do |cart| %> 
+                                  <p>my cart: </p>
 
 
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td> <%= cart.prix %> €</td>
-      <% @total = @total + cart.prix %>
-      <td> <%= cart.payed %></td>
-      <td> <%= image_tag Bike.find(cart.bike_id).avatar, alt: 'avatar' ,width: '100px', height: '100px'%></td>
-      <td> <%= cart.created_at %></td>
-      <td><a href="<%= rent_path(cart.id) %>" class="btn btn-outline-danger" data-method="DELETE">Delete</a></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
-total à régler : <%= @total %> €
+<%= render "cart" %>
 <%= render "pay_cart" %>
-<hr>
 
+                       </div>
+              </div>
 
+              
+              <div class="tab-pane fade exp-cover" id="resume" role="tabpanel" aria-labelledby="contact-tab">
+                  <div class="sec-title">
+                                        <h2>Mes Locations</h2>
+                                  </div>
+                            
+                                  <p>mes locations payées: </p>
+
+<%= render "shared/rent" %>
+                             
+              </div>
+              <div class="tab-pane fade gallcoo" id="gallery" role="tabpanel" aria-labelledby="contact-tab">
+                  <div class="row no-margin gallery">
+                                          
 <p>mes velos: </p>
+
 <%= link_to"ajouter un vélo", new_bike_path %>
-<table class="table table-dark">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">bike id</th>
-      <th scope="col">more info</th>
+<%= render "bike" %>
 
-    </tr>
-  </thead>
-  <% @bikes.each do |bike| %> 
-  <tbody>
-    <tr>
-      <th scope="row"></th>
-      <td><%= image_tag bike.avatar, alt: 'avatar' ,width: '200px', height: '200px'%></td>
-      <td> <%= bike.more_info %></td>
-      <td><a href="<%= bike_path(bike.id) %>" class="btn btn-outline-danger" data-method="DELETE">Delete</a></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
-
-
-
-
-
-
-
-
-<p>mes locations payées: </p>
-
-<table class="table table-dark">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">bike id</th>
-      <th scope="col">more info</th>
-
-    </tr>
-  </thead>
-  <% @rents.each do |rent| %> 
-  <tbody>
-    <tr>
-      <th scope="row"></th>
-      
-      <td><%= image_tag Bike.find(rent.bike_id).avatar, alt: 'avatar' ,width: '200px', height: '200px'%></td>
-
-    </tr>
-  </tbody>
-  <% end %>
-</table>
-
-
-</div>
-
+                                          
+                                      </div>
+              </div>
+    
+            </div>
+        </div>
+    </div>
