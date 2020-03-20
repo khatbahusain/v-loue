@@ -1,26 +1,29 @@
 <table class="table table-dark">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">Vélo</th>
       <th scope="col">prix</th>
-      <th scope="col">payed?</th>
-      <th scope="col">bike</th>
-      <th scope="col">Date d'ajoute</th>
+      <th scope="col">Date</th>
+      <th scope="col">Supprimer</th>
     </tr>
   </thead>
   <% @total = 0 %>
   <% @carts.each do |cart| %> 
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td> <%= cart.prix %> €</td>
-      <% @total = @total + cart.prix %>
-      <td> <%= cart.payed %></td>
+     <% @rent_period = (cart.date_end - cart.date_disponible)/60/60/24 %>
       <td> <%= image_tag Bike.find(cart.bike_id).avatar, alt: 'avatar' ,width: '100px', height: '100px'%></td>
-      <td> <%= cart.created_at %></td>
-      <td><a href="<%= rent_path(cart.id) %>" class="btn btn-outline-danger" data-method="DELETE">Delete</a></td>
+      <td> <%= (cart.prix *  @rent_period) %> €</td>
+      <% @total = @total + cart.prix %>
+      <td>de<span class="text-success"> <%= cart.date_disponible.strftime("%d/%m/%Y") %></span> au<span class="text-success">
+      <%= cart.date_end.strftime("%d/%m/%Y") %></span></td>
+      <td><a href="<%= rent_path(cart.id) %>" class="btn btn-outline-danger" data-method="DELETE"><i class="far fa-trash-alt fa-2x"></i></a></td>
     </tr>
   </tbody>
+
   <% end %>
 </table>
-total à régler : <%= @total %> €
+
+<div class="border p-1">
+Total à régler : <span class="display-4 text-success"><%= @total * @rent_period.to_i %> € </span>
+</div>

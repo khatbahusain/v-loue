@@ -60,3 +60,4 @@ gem "letter_opener", :group => :development
 gem 'dotenv-rails'
 gem 'stripe'
 gem "aws-sdk-s3", require: false
+gem 'faker'

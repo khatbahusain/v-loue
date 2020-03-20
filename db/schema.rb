@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_151010) do
+ActiveRecord::Schema.define(version: 2020_03_20_181031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,12 @@ ActiveRecord::Schema.define(version: 2020_03_18_151010) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "rents", force: :cascade do |t|
     t.integer "prix", default: 1, null: false
     t.boolean "payed", default: false
@@ -58,16 +64,16 @@ ActiveRecord::Schema.define(version: 2020_03_18_151010) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "bike_id"
     t.bigint "user_id"
-    t.bigint "cart_id"
-    t.index ["cart_id"], name: "index_rents_on_cart_id"
+    t.datetime "date_disponible"
+    t.datetime "date_end"
     t.index ["user_id"], name: "index_rents_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "first_name", default: "first name"
-    t.string "last_name", default: "last name"
+    t.string "first_name", default: " "
+    t.string "last_name", default: " "
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -76,6 +82,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_151010) do
     t.datetime "last_sign_in_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "birthday", default: "1990-05-21 10:00:00"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

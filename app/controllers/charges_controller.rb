@@ -17,11 +17,13 @@ class ChargesController < ApplicationController
       customer: customer.id,
       amount: @amount,
       description: 'Rails Stripe customer',
-      currency: 'usd',
+      currency: 'eur',
     })
 
     Rent.where(user_id: current_user.id).update(payed: true)
-  
+    flash[:success] = 'Le paiement est effectué'
+    redirect_to user_path(current_user.id)
+
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path

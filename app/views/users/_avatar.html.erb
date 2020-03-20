@@ -1,9 +1,8 @@
-<%if @user.avatar.attached?%>
-  <%= image_tag @user.avatar, alt: 'avatar' ,width: '200px', height: '200px'%>
-<%else%>
-<%end%>
+  <%if @user.avatar.attached?%>
+    <a href="<%= edit_user_path %>"><%=  image_tag @user.avatar, alt: 'avatar' ,width: '200px', height: '200px'%></a>
+  <%else%>
+    <a href="<%= edit_user_path %>"><%= image_tag "unkown_user.png", alt: 'avatar' ,width: '200px', height: '200px'%></a>
+  <%end%>
 
-<%= form_tag user_avatars_path(@user), multipart: true do %>
-  <%= file_field_tag :avatar %>
-  <%= submit_tag "mettre à jour" %>
-<% end %>
+
+

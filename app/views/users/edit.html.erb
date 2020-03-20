@@ -1,5 +1,37 @@
-profile edit page
-<%= form_tag user_path(current_user.id), method: "patch", multipart: true do %>
-  <%= text_field_tag :'name' %>
-  <%= submit_tag "mettre à jour" %>
+
+<div class="container">
+  <h3> Modifier mon profil </h3>
+
+<% if is_my_profile? %> 
+  <div class="card col-lg-12 col-sm-12" >
+        <div class="card-body">
+       <%if @user.avatar.attached?%>
+  <%= image_tag @user.avatar, alt: 'avatar' ,width: '200px', height: '200px'%>
+<%else%>
+<%= image_tag 'unkown_user.png', alt: 'avatar' ,width: '200px', height: '200px'%>
+<%end%>
+  <%= form_tag user_avatars_path(@user), multipart: true do %>
+    <%= file_field_tag :avatar %>
+    <%= submit_tag "mettre à jour", class: "btn btn-dark"  %>
+  <% end %>
+
+   <%= form_for current_user, method: "patch", url: user_path  do |f| %>
+    
+          <p class="card-text">Prénom <%= f.text_field :first_name , class: 'form-control' %> </p>
+          <p class="card-text">Nom <%= f.text_field :last_name , class: 'form-control' %> </p>
+           <p class="card-text">Date de naissance <%= f.date_field :birthday , class: 'form-control' %> </p>
+   
+          <hr class="my-4">
+          <a class="btn btn-dark"> <%= f.submit "Modifier" %> </a>
+          <hr class="my-4">
+        </div>
+      </div>
+  <% end %>
+<% else %>
+
+<p class="display-2 text-danger">Ce n'est pas votre profil !! <p>
 <% end %>
+</div>
+
+
+

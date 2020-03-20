@@ -1,29 +1,35 @@
 <div class="container-fluid overcover">
-        <div class="container profile-box">
-            <div class="top-cover">
-                <div class="covwe-inn">
+        <div class="container profile-box">   
+
                     <div class="row no-margin">
-                        <div class="col-md-3 img-c">
-                            <img src="assets/images/profile.jpg" alt="">
-                        </div>
-                        <div class="col-md-9 tit-det">
-                        <%= render "avatar" %>
+                        <div class="col-md-9">
+
+<%= render "avatar" %>
+<% if !is_my_profile? %>
+<%= link_to "envoyer un message", root_path, class: "btn btn-info" %>
+<% end %>
+<% if is_my_profile? %> 
+  <%= link_to edit_user_path, class: "text-info" do %>
+  <i class="far fa-edit fa-2x"></i>
+<% end %>
+<% end %>
                         </div>
                     </div>
-                </div>
-            </div>
+                   
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profile</a>
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profil</a>
               </li>
+              <% if is_my_profile? %>
               <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Ma Cart</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#resume" role="tab" aria-controls="profile" aria-selected="false">Mes Locations</a>
               </li>
+              <% end %>
               <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="profile" aria-selected="false">Mes Vélos</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="profile" aria-selected="false">Vélos</a>
               </li>            
             </ul>
 
@@ -33,7 +39,7 @@
                       <div class="col-md-8 home-dat">                                     
                       <div class="jumbo-address">
                          <div class="row no-margin">
-                                  <div class="col-lg-6 no-padding">
+                                  <div class="col-lg-6">
 
                                   <table class="addrss-list">
                                       <tbody><tr>
@@ -48,15 +54,14 @@
                                           <th>Email</th>
                                           <td><%= @user.email %></td>
                                       </tr>
-                                      <tr>
+                                    <tr>
                                         <th>Date de naissance</th>
-                                        <td>09-06-1989</td>
+                                        <td><%= @user.birthday.strftime("%d/%m/%Y") %></td>
                                     </tr>
-                                  </tbody></table>
-                                  <%= link_to "envoyer un message", root_path, class: "btn btn-outline-dark" %>
-                                  <%= link_to "Se deconnecter",destroy_user_session_path, :method => :delete, class: "btn btn-outline-dark" %>
-                                  <%= link_to"edit profile", edit_user_path %>
+              
+                                  </tbody></table>    
                           </div>
+  
                          
                          </div>
 
@@ -64,44 +69,38 @@
                       </div>
                   </div>
               </div>
+
+
+
+              
               <div class="tab-pane fade exp-cover" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                   <div class="data-box">
                           <div class="sec-title">
-                                        <h2>Ma Cart</h2>
-                                  </div>
-
-                                  <p>my cart: </p>
-
-
+                            <h2>Ma Cart</h2>
+                          </div>
 <%= render "cart" %>
 <%= render "pay_cart" %>
+                  </div>
+              </div>
+             
 
-                       </div>
+              <div class="tab-pane fade exp-cover" id="resume" role="tabpanel" aria-labelledby="contact-tab">
+                  <div class="sec-title">
+                    <h2>Mes locations passées:</h2>
+                  </div>                 
+<%= render "rent" %>                          
               </div>
 
               
-              <div class="tab-pane fade exp-cover" id="resume" role="tabpanel" aria-labelledby="contact-tab">
-                  <div class="sec-title">
-                                        <h2>Mes Locations</h2>
-                                  </div>
-                            
-                                  <p>mes locations payées: </p>
-
-<%= render "shared/rent" %>
-                             
-              </div>
               <div class="tab-pane fade gallcoo" id="gallery" role="tabpanel" aria-labelledby="contact-tab">
-                  <div class="row no-margin gallery">
-                                          
-<p>mes velos: </p>
-
-<%= link_to"ajouter un vélo", new_bike_path %>
-<%= render "bike" %>
-
-                                          
-                                      </div>
+                          <div class="sec-title">
+                            <h2>Me Vélos</h2>
+                          </div>
+  
+<%= link_to new_bike_path, class: "btn btn-default" do %>
+    <i class='fa fa-plus fa-2x' aria-hidden='true'></i> Ajouter un vélo
+<% end %>
+<%= render "bike" %>                                              
               </div>
-    
-            </div>
-        </div>
-    </div>
+</div>
+</div>

@@ -1,0 +1,22 @@
+<table class="table table-dark">
+ <thead>
+    <tr>
+      <th scope="col">Photo</th>
+      <th scope="col">Vélo-info</th>    
+      <th scope="col">Info</th>                                  
+    </tr>
+  </thead>
+
+    <tbody>
+    <% @rents.each do |rent| %> 
+      <tr>                          
+        <td><%= image_tag Bike.find(rent.bike_id).avatar, alt: 'avatar' ,width: '200px', height: '200px'%></td>
+        <td><%= Bike.find(rent.bike_id).more_info %></td>   
+        <td>montant: <%= rent.prix %> €
+          <hr>
+            date:<span class="text-success"> <%= rent.date_disponible.strftime("%d/%m/%Y") %> - <%= rent.date_end.strftime("%d/%m/%Y") %> </span> (<%= ((rent.date_end - rent.date_disponible)/60/60/24).to_i %> jours)
+        </td>                             
+      </tr>
+    </tbody>
+<% end %>
+</table>

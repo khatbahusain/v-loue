@@ -10,7 +10,6 @@ class BikesController < ApplicationController
 
   def create
     @bike = Bike.new(user_id: current_user.id, more_info: params[:more_info])
-    puts params
     @bike.avatar.attach(params[:imgbike])
     @bike.save
   end

@@ -3,7 +3,6 @@ class RentsController < ApplicationController
 
   def index
     @rents = Rent.where(payed: false)
-    #.where.not(bike_id: Bike.where(user_id: current_user.id))
   end
 
   def show
@@ -21,7 +20,7 @@ class RentsController < ApplicationController
     puts params
     puts 'create' * 100
     
-    Rent.create(prix: params[:prix], created_at: params[:created_at], bike_id: params[:bike_id], payed: false)
+    Rent.create(prix: params[:prix], bike_id: params[:bike_id], payed: false, date_disponible: params[:date_disponible], date_end: params[:date_end])
   end
 
   def update

@@ -1,7 +1,11 @@
 <% if @mybikes.length == 0 %>
-you dont have bike yet
 
+<p class="text-danger">Vous n'avez pas encore de vélo !! <p>
+<%= link_to new_bike_path, class: "btn btn-default" do %>
+    <i class='fa fa-plus fa-2x' aria-hidden='true'></i> Ajouter un vélo
+<% end %>
 <% else %>
+
 
 
   <div class="container p-3 my-3 border">
@@ -25,19 +29,26 @@ you dont have bike yet
     <div class="form-group row">
     <label for="example-text-input" class="col-2 col-form-label">prix</label>
       <div class="col-10">
-      <%= number_field_tag :'prix' ,"", class: ""%> €/per day    
+      <%= number_field_tag :'prix' ,"", class: ""%> € / per day    
       </div>
     </div>
 
     <div class="form-group row">
-    <label for="example-text-input" class="col-2 col-form-label">date dispo</label>
+    <label for="example-text-input" class="col-2 col-form-label">À partir du: </label>
       <div class="col-10">
-      <%= date_field_tag :'date' , class: "btn btn-dark center-block"%>
+      <%= date_field_tag :'date_disponible' , class: "btn btn-dark center-block"%>
+      </div>
+    </div>
+
+        <div class="form-group row">
+    <label for="example-text-input" class="col-2 col-form-label">Jusqu'au: </label>
+      <div class="col-10">
+      <%= date_field_tag :'date_end' , class: "btn btn-dark center-block"%>
       </div>
     </div>
 
     <div class="form-group row">
-      <%= submit_tag "Create" , class: "btn btn-dark center-block"%>
+      <%= submit_tag "Créer" , class: "btn btn-dark center-block"%>
     </div>
 <% end %>
 </div>

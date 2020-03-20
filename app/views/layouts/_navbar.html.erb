@@ -6,9 +6,9 @@
     <% if current_user %>
       <% if current_user.avatar.attached? %>
         <a href="<%= user_path(current_user.id) %>"><%= image_tag current_user.avatar, alt: 'avatar' ,width: '70px', height: '70px'%>
+        <span class="btn btn-dark">Mon Espace</span></a>
       <% else %>
-         <a href="<%= user_path(current_user.id) %>"><%= image_tag "unkonwn_user.png", alt: 'avatar' ,width: '70px', height: '70px'%>
-        <kdb class="text-dark">My Profile</kdb></a>
+         <a href="<%= user_path(current_user.id) %>"><%= image_tag "unkown_user.png", alt: 'avatar' ,width: '70px', height: '70px'%> <span class="btn btn-dark">Mon Espace</span></a>
       <% end %>
     <% end %>
 
@@ -32,4 +32,5 @@
   </div>
 </nav>
 
-<br><br><br><br><br>
+
+<br><br><br><br>
