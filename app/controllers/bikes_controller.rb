@@ -1,17 +1,15 @@
 class BikesController < ApplicationController
   before_action :authenticate_user!
 
-
   def new
-    puts "new" * 100
   end
-
-
 
   def create
     @bike = Bike.new(user_id: current_user.id, more_info: params[:more_info])
     @bike.avatar.attach(params[:imgbike])
     @bike.save
+    flash[:success] = 'Vous avez ajouter un vélo !'
+    redirect_to user_path(current_user.id)
   end
 
   def show
@@ -21,6 +19,8 @@ class BikesController < ApplicationController
 
   def destroy
     Bike.find(params[:id]).destroy
+    flash[:success] = 'Vous avez supprimer un vélo !'
+    redirect_to user_path(current_user.id)
   end
   
 end
