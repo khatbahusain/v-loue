@@ -1,24 +1,23 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# V-loue : Location de vélo entre particuliers (version MVP)
 
-Things you may want to cover:
 
-* Ruby version
+## Parcours utilisateur
 
-* System dependencies
 
-* Configuration
+* L'utilisateur peut consulter toutes les locations proposees sans compte utilisateur.
 
-* Database creation
+* L'utilisateur doit créer un compte utilisateur pour louer ou proposer un vélo.
 
-* Database initialization
+* L'utilisateur peut modifier son compte utilisateur.
 
-* How to run the test suite
+* L'utilisateur peut soit proposer son vélo à la location, soit louer un vélo proposé.
 
-* Services (job queues, cache servers, search engines, etc.)
+* L’utilisateur voit ses locations proposées ou prises.
 
-* Deployment instructions
+* L'utilisateur peut ajouter un ou plusieurs vélos.
 
-* ...
+
+## lien Heroku: 
+https://v-loue.herokuapp.com/
+
