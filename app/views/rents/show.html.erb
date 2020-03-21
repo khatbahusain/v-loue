@@ -1,3 +1,15 @@
-single rent page
+<div class="container">
+  <div class="card mb-3">
+  <%= image_tag Bike.find(@rent.bike_id).avatar, alt: 'avatar' ,width: '400px', height: '400px'%>
+    <div class="card-body">
 
-<%= @rent.inspect %>
+      <h5 class="card-title">Propriétaire: <%= User.find(Bike.find(@rent.bike_id).user_id).email %><a href="<%= user_path(User.find(Bike.find(@rent.bike_id).user_id)) %>%"> affiche profil</a></h5>
+
+      <% @rent_period = (@rent.date_end - @rent.date_disponible)/60/60/24 %>
+      <p class="card-text">total prix: <%= @rent.prix * @rent_period %> € / soit <span> <%= @rent.prix %> € par jour</span></p>
+
+      <p class="card-text">info sur le vélo: <%= Bike.find(@rent.bike_id).more_info %></p>
+      <p class="card-text"><small class="text-muted">date de location: du <%= @rent.date_disponible.strftime("%d/%m/%Y") %> au <%= @rent.date_end.strftime("%d/%m/%Y") %> </small></p>
+    </div>
+  </div>
+</div>
