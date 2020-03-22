@@ -2,7 +2,7 @@
         <div class="container profile-box">   
 
                     <div class="row no-margin">
-                        <div class="col-md-9">
+                        <div class="col-md-3 border m-1 p-3">
 
 <%= render "avatar" %>
 <% if !is_my_profile? %>
@@ -14,6 +14,9 @@
 <% end %>
 <% end %>
                         </div>
+
+                                    <div class="col-md-6 border text-center m-1 p-3">Mes messages privés
+                                    </div>
                     </div>
                    
             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -102,5 +105,6 @@
 <% end %>
 <%= render "bike" %>                                              
               </div>
+</div>
 </div>
 </div>
