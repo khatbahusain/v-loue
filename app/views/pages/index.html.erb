@@ -1,7 +1,7 @@
 <section class="hero-home">
       <div class="swiper-container hero-slider">
         <div class="swiper-wrapper dark-overlay">
-          <div style="background-image:url(https://images.pexels.com/photos/861014/pexels-photo-861014.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500)" class="swiper-slide">
+          <div style="background-image:url(https://images.pexels.com/photos/1684027/pexels-photo-1684027.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)" class="swiper-slide">
           </div>
         </div>
       </div>
@@ -13,11 +13,28 @@
               <h1 class="display-3 font-weight-bold text-shadow">Location de vélos entre particuliers</h1>
             </div>
             <div class="col-lg-6">
-              <%= link_to"Chercher un Vélo ", rents_path, class: "btn btn-success btn-lg btn-block rounded-xl h-100" %>
+              <%= link_to"Chercher un Vélo ", rents_path,id: "demo", class: "btn btn-lg btn-block rounded-xl h-100" %>
             </div>  
           </div>
         </div>
       </div>
-
 </section>
 
+<div class="demo py-7 swiper-slide">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-4">
+        <i class="fas fa-sync-alt fa-5x"></i>
+        <p>simple</p>
+      </div>
+      <div class="col-4">
+        <i class="fas fa-fast-forward fa-5x"></i>
+        <p>rapide</p>
+      </div>
+      <div class="col-4">
+        <i class="fas fa-euro-sign fa-5x"></i>
+        <p>Pas cher</p>
+      </div>
+    </div>
+  </div>
+</div>

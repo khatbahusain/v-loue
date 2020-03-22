@@ -15,9 +15,16 @@ class RentsController < ApplicationController
   end
 
   def create
-    Rent.create(prix: params[:prix], bike_id: params[:bike_id], payed: false, date_disponible: params[:date_disponible], date_end: params[:date_end])
-    flash[:success] = 'Vous avez ajouter une location !'
-    redirect_to rents_path
+    @rent = Rent.new(prix: params[:prix], bike_id: params[:bike_id], payed: false, date_disponible: params[:date_disponible], date_end: params[:date_end])
+    if @rent.save 
+      flash[:success] = 'Vous avez bien ajouter une location !'
+      redirect_to rents_path
+    else
+      flash[:error] = 'Veuillez vérifier la date ou le prix !'
+      redirect_to new_rent_path
+    end
+
+    
   end
 
   def update
