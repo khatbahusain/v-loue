@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 <p><span class="text-success"> V-loue </span> disponibles: </p>
 <table class="table table-light">
   <thead>
@@ -17,7 +17,8 @@
   <% @rents.each do |rent| %>
   <tbody>
     <tr>
-     <th scope="row"><%= image_tag Bike.find(rent.bike_id).avatar, alt: 'avatar' ,width: '200px', height: '200px'%></th>
+     <th scope="row"><<%= image_tag Bike.find(rent.bike_id).avatar, alt: 'avatar' ,width: '200px', height: '200px'%>></th>
+
       <td><span class="text-success"><%= rent.date_disponible.strftime("%d/%m/%Y") %></span></td>
 
       <td><span class="text-success"><%= rent.date_end.strftime("%d/%m/%Y") %></span></td>
@@ -43,6 +44,7 @@
       <%= link_to"Affiche plus", rent_path(rent.id)%>
     </td>
 
+  </tr>
   </tbody>
   <% end %>
 </table>
