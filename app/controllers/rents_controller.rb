@@ -15,29 +15,44 @@ class RentsController < ApplicationController
   end
 
   def create
+
     @rent = Rent.new(prix: params[:prix], bike_id: params[:bike_id], payed: false, date_disponible: params[:date_disponible], date_end: params[:date_end])
     if @rent.save 
       flash[:success] = 'Vous avez bien ajouter une location !'
-      redirect_to rents_path
     else
-      flash[:error] = 'Veuillez vérifier la date ou le prix !'
-      redirect_to new_rent_path
-    end
-
+    flash[:error] = 'Veuillez vérifier la date ou le prix !'
+    redirect_to new_rent_path
+  end
     
   end
 
   def update
-    Rent.find(params[:id]).update(user_id: current_user.id)
-    flash[:success] = 'Vous avez ajouter une location à votre cart !'
-    redirect_to user_path(current_user.id)
+
+    @rent = Rent.find(params[:id])
+
+    if (@rent.user_id == nil)
+      @rent.update(user_id: current_user.id)
+      flash[:success] = 'Vous avez ajouter une location à votre cart !'
+      respond_to do |format|
+        format.html { redirect_to rents_path }
+        format.js { } 
+      end
+      
+    elsif (@rent.user_id == current_user.id)
+      @rent.update(user_id: nil)
+      flash[:success] = 'Vous avez suprimer une location à votre cart !'
+      respond_to do |format|
+        format.html { redirect_to rents_path }
+        format.js { } 
+      end
+    end
+
+
   end
 
+
   def destroy
-    puts "destroy" * 100
-    Rent.find(params[:id]).update(user_id: nil)
-    flash[:success] = 'Vous avez supprimer une location de votre cart !'
-    redirect_to rents_path
+
   end
 
 
