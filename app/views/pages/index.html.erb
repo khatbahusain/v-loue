@@ -1,65 +1,27 @@
-<section class="hero-home">
-      <div class="hero-slider">
-        <div class="swiper-wrapper dark-overlay">
-          <div style="background-image:url(https://images.pexels.com/photos/1684027/pexels-photo-1684027.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)" class="swiper-slide">
-          </div>
-        </div>
+
+
+<header id="header" class="header">
+  <div class="header-content">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>Location de vélos entre particuliers</h1>
+        </div>  
       </div>
-
-      <div class="container py-6 text-white z-index-20">
-
-        <div class="row">
-          <div class="text-center text-lg-left">
-            <h1 class="display-5 font-weight-bold text-shadow">Location de vélos entre particuliers</h1>
-          </div>
-        </div>
-          
-
-          <%= form_tag rents_search_path ,multipart: true do %>
-  
-        <div class="form-group row">
-          <label class="col-12 col-form-label">trouver un vélo à partir du: </label>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-lg-9 col-md-9 col-sm-12">
-            <%= date_field_tag :'date',"", class: 'p-4 form-control', id: "btnsearch" %>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12">
-          <%= submit_tag "trouver" , class: "btn btn-outline-info"%>
-          </div>
-        </div>
-   
-
-
-
-<% end %>
-
-
-
-
-
-        </div>
+      <%= form_tag rents_search_path ,multipart: true do %>
+      <div class="form-group row">
+        <label class="col-12 col-form-label">trouver un vélo à partir du: </label>
       </div>
-      
-</section>
-
-<div class="py-7 swiper-slide">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-4">
-        <i class="fas fa-sync-alt fa-5x"></i>
-        <p>simple</p>
-      </div>
-      <div class="col-4">
-        <i class="fas fa-fast-forward fa-5x"></i>
-        <p>rapide</p>
-      </div>
-      <div class="col-4">
-        <i class="fas fa-euro-sign fa-5x"></i>
-        <p>Pas cher</p>
+      <div class="form-group row">
+        <div class="col-lg-9 col-md-9 col-sm-12">
+        <%= date_field_tag :'date',"", class: 'p-4 form-control', id: "btnsearch" %>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12">
+        <%= submit_tag "Rechercher" , class: "btn-solid-lg page-scroll"%>
+        <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
+</header>
