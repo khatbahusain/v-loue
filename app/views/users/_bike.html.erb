@@ -1,4 +1,4 @@
-<table class="table table-light">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th scope="col">Photo</th>
@@ -10,7 +10,7 @@
     <tr>
       <td><%= image_tag bike.avatar, alt: 'avatar' ,width: '200px', height: '200px'%></td>
       <td> <%= bike.more_info %></td>
-      <td><a href="<%= bike_path(bike.id) %>" class="btn btn-outline-danger" data-method="DELETE"><i class="far fa-trash-alt fa-2x"></i></a></td>
+      <td><a href="<%= bike_path(bike.id) %>" class="btn btn-outline-danger" data-method="DELETE"><i class="far fa-trash-alt"></i></a></td>
     </tr>
   </tbody>
   <% end %>

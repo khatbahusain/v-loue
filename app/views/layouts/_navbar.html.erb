@@ -1,22 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg bg-transparent navbar-light p-0 m-0">
+
   <div class="container-fluid">
+
     <div class="d-flex align-items-center"><a href="<%= root_path %>" class="navbar-brand"><kbd class="display-5 btn border light p-3">V-loue <i class="fas fa-bicycle fa-2x"></i></kbd></a> 
     </div>
 
     <% if current_user %>
       <% if current_user.avatar.attached? %>
-        <a href="<%= user_path(current_user.id) %>"><%= image_tag current_user.avatar, alt: 'avatar' ,width: '70px', height: '70px'%>
-        <span class="btn">Mon Espace</span></a>
-      <% else %>
-         <a href="<%= user_path(current_user.id) %>"><%= image_tag "unkown_user.png", alt: 'avatar' ,width: '70px', height: '70px'%> <span class="btn">Mon Espace</span></a>
+        <a href="<%= user_path(current_user.id) %>"><%= image_tag current_user.avatar, alt: 'avatar' ,width: '70px', height: '70px', class: "rounded-circle" %><i class="far fa-eye fa-2x text-dark"></i></a>
+      <% else  %>
+         <a href="<%= user_path(current_user.id) %>"><%= image_tag "unkown_user.png", alt: 'avatar' ,width: '70px', height: '70px', class: "rounded-circle"%></a>
       <% end %>
     <% end %>
 
-    <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+    <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-plus"></i></button>
 
     <div id="navbarCollapse" class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="<%= pages_contact_path %>" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="<%= users_path %>" class="nav-link">Utilisateurs</a></li>
           <% if !user_signed_in? %>
           <li class="nav-item"><a href="<%= new_user_session_path %>" class="nav-link">Connexion</a></li>
           <li class="nav-item"><a href="<%= new_user_registration_path %>" class="nav-link">Inscription</a></li>
@@ -32,5 +34,4 @@
     </div>
   </div>
 </nav>
-
 

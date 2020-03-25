@@ -1,0 +1,8 @@
+<% if !is_my_profile? %>
+<%= link_to "envoyer un message", root_path, class: "btn btn-info" %>
+<% end %>
+<% if is_my_profile? %> 
+  <%= link_to edit_user_path, class: "text-info" do %>
+  <p>Mettre à jour le profil</p>
+<% end %>
+<% end %>

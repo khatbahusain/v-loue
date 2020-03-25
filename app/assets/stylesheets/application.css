@@ -14,23 +14,10 @@
  *= require_self
  */
 
-body {
-  width: 100%;
-  height: 100%;
-}
-.navbar {
-  background-color:#F3CA40;
-}
 
-#demo {
-  background-color: #FF595E;
-  color: whitesmoke;
+
+
+#btnsearch:hover {
   font-size: large;
-}
-.demo {
-  background-color: #B5952F;
-}
-.demo .row {
-  color: whitesmoke;
 }
 

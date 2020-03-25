@@ -5,6 +5,10 @@ class User < ApplicationRecord
     UserMailer.welcome_email(self).deliver_now
   end
 
+  has_many :sender_comments, foreign_key: 'sender_id', class_name: "Comment"
+  has_many :received_comments, foreign_key: 'recipient_id', class_name: "Comment"
+
+
   has_many :rents
   has_one_attached :avatar
   # Include default devise modules. Others available are:

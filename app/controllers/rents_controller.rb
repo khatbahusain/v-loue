@@ -1,8 +1,8 @@
 class RentsController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: [:index,:search]
 
   def index
-    @rents = Rent.where(payed: false)
+    @rents = Rent.where(payed: false).order(:id)
   end
 
   def show
@@ -27,7 +27,7 @@ class RentsController < ApplicationController
   end
 
   def update
-
+    puts "P" * 1000
     @rent = Rent.find(params[:id])
 
     if (@rent.user_id == nil)
@@ -35,7 +35,7 @@ class RentsController < ApplicationController
       flash[:success] = 'Vous avez ajouter une location à votre cart !'
       redirect_to rents_path
       
-    elsif (@rent.user_id == current_user.id)
+    elsif (@rent.user_id != nil)
       @rent.update(user_id: nil)
       flash[:success] = 'Vous avez suprimer une location à votre cart !'
       redirect_to rents_path
@@ -50,5 +50,12 @@ class RentsController < ApplicationController
     redirect_to rents_path
   end
 
+  def search
+    if params[:date] == ""
+      params[:date] = "10-10-2019"
+    end
 
+    @rents = Rent.where(payed: false).where("DATE(date_disponible) >= ?", params[:date]).order('date_disponible')
+  end
+  
 end

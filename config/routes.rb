@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   
-  resources :users, only: [:show, :update, :edit] do
+  resources :users, only: [:show, :update, :edit, :index] do
     resources :avatars, only: [:create]
   end
 
-  resources :rents, only: [:new, :create, :index, :show, :update, :destroy]
+  resources :rents do 
+    resources :comments
+  end
 
   resources :bikes, only: [:new, :create, :show, :destroy]  do
     resources :img_bikes, only: [:create]
@@ -15,5 +17,6 @@ Rails.application.routes.draw do
   root to: 'pages#index'
 
   get 'pages/contact'
+  post 'rents/search'
 
 end

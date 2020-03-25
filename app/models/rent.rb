@@ -9,9 +9,10 @@ class Rent < ApplicationRecord
   validate :prix_non_zero
 
 	def start_date_cannot_be_in_the_past
-		if date_disponible < Date.today || date_disponible > date_end
+		if (date_disponible < Date.today || date_disponible > date_end)
           errors.add(:error, "can't be in the past")
     end
+
   end
   
 

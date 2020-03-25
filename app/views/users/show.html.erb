@@ -1,110 +1,55 @@
-<div class="container-fluid overcover">
-        <div class="container profile-box">   
-
-                    <div class="row no-margin">
-                        <div class="col-md-3 border m-1 p-3">
-
-<%= render "avatar" %>
-<% if !is_my_profile? %>
-<%= link_to "envoyer un message", root_path, class: "btn btn-info" %>
-<% end %>
-<% if is_my_profile? %> 
-  <%= link_to edit_user_path, class: "text-info" do %>
-  <i class="far fa-edit fa-2x"></i>
-<% end %>
-<% end %>
-                        </div>
-
-                                    <div class="col-md-6 border text-center m-1 p-3">Mes messages privés
-                                    </div>
-                    </div>
-                   
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profil</a>
-              </li>
-              <% if is_my_profile? %>
-              <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Ma Cart</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#resume" role="tab" aria-controls="profile" aria-selected="false">Mes Locations</a>
-              </li>
-              <% end %>
-              <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="profile" aria-selected="false">Vélos</a>
-              </li>            
-            </ul>
-
-            <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                  <div class="row no-margin home-det">
-                      <div class="col-md-8 home-dat">                                     
-                      <div class="jumbo-address">
-                         <div class="row no-margin">
-                                  <div class="col-lg-6">
-
-                                  <table class="addrss-list">
-                                      <tbody><tr>
-                                          <th>Prénom</th>
-                                          <td><%= @user.first_name %></td>
-                                      </tr>
-                                      <tr>
-                                          <th>Nom</th>
-                                          <td><%= @user.last_name %></td>
-                                      </tr>
-                                      <tr>
-                                          <th>Email</th>
-                                          <td><%= @user.email %></td>
-                                      </tr>
-                                    <tr>
-                                        <th>Date de naissance</th>
-                                        <td><%= @user.birthday.strftime("%d/%m/%Y") %></td>
-                                    </tr>
-              
-                                  </tbody></table>    
-                          </div>
-  
-                         
-                         </div>
-
-                      </div>
-                      </div>
-                  </div>
-              </div>
+<div class="container-fluid mt-5">
+  <div class="container">   
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <%= render "avatar" %>
+        <%= render "btn_under_photo" %>
+      </div>
+      <div class="col border m-1 p-3">
+        <p class="lead">Bonjour, je m'appelle <%= @user.first_name %> <%= @user.last_name.upcase %></p>
+        <p class="text-muted">Email : <%= @user.email  %></p>
+        <p class="text-muted">Membre depuis le : <%= @user.created_at.strftime("%d/%m/%Y")  %></p>
+        <p class="text-muted">Date de naissance : <%= @user.birthday.strftime("%d/%m/%Y") %> (<%= DateTime.now.year - @user.birthday.year%> ans)</p>
+        <p class="text-muted">Locations : <%= Rent.where(user_id: @user.id, payed: true).length %> x <i class="fas fa-bicycle fa-1x" style="color:#008B8B;"></i></p>
+        <p class="text-muted">Likes : <% Comment.where(recipient_id: @user.id).each do |comment| %> 
+        <%= comment.note%>
+        <% end %>
+         x <i class="fas fa-heart fa-1x" style="color:#DC143C;"></i></p>
+      </div>           
+    </div>
+       <%= render "tablist" %>   
 
 
+<div class="tab-content" id="myTabContent">
 
-              
-              <div class="tab-pane fade exp-cover" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                  <div class="data-box">
-                          <div class="sec-title">
-                            <h2>Ma Cart</h2>
-                          </div>
-<%= render "cart" %>
-<%= render "pay_cart" %>
-                  </div>
-              </div>
+  <div class="tab-pane fade exp-cover" id="cart" role="tabpanel" aria-labelledby="cart-tab">
+    <%= render "cart" %>
+    <%= render "pay_cart" %>
+  </div>
              
 
-              <div class="tab-pane fade exp-cover" id="resume" role="tabpanel" aria-labelledby="contact-tab">
-                  <div class="sec-title">
-                    <h2>Mes locations passées:</h2>
-                  </div>                 
+<div class="tab-pane fade exp-cover" id="rent" role="tabpanel" aria-labelledby="rent-tab">           
 <%= render "rent" %>                          
-              </div>
+</div>
 
               
-              <div class="tab-pane fade gallcoo" id="gallery" role="tabpanel" aria-labelledby="contact-tab">
-                          <div class="sec-title">
-                            <h2>Me Vélos</h2>
-                          </div>
-  
-<%= link_to new_bike_path, class: "btn btn-default" do %>
+<div class="tab-pane fade gallcoo" id="bike" role="tabpanel" aria-labelledby="contact-tab">
+    <%= link_to new_bike_path, class: "btn btn-default" do %>
     <i class='fa fa-plus fa-2x' aria-hidden='true'></i> Ajouter un vélo
 <% end %>
 <%= render "bike" %>                                              
-              </div>
+</div>
+
+<div class="tab-pane fade exp-cover" id="message" role="tabpanel" aria-labelledby="message-tab">           
+  <%= render "private_message" %>        
+</div>
+
+<div class="tab-pane fade exp-cover" id="commentaire" role="tabpanel" aria-labelledby="commentaire-tab">           
+  <%= render "commentaire" %>        
+</div>
+
+
+
 </div>
 </div>
 </div>

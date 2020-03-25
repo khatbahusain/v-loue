@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
-
+  def index
+    @notes = 0
+    @users = User.all
+  end
   def show
     @user = User.find(params[:id])
     @bikes = Bike.where(user_id: current_user.id)
     @carts = Rent.where(user_id: current_user.id, payed: false)
     @rents = Rent.where(user_id: current_user.id, payed: true)
-    @total_user_rent = Rent.where(user_id: @user.id, payed: true)
   end
 
   def edit

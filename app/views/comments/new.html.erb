@@ -1,0 +1,13 @@
+<%= form_tag rent_comments_path, method: "post", multipart: true do %>
+
+    
+  <%= text_field_tag :'content' %><br>
+
+  <%= number_field_tag :'note' %><br>
+
+  <%= submit_tag "Créer comment" %>
+
+   
+<% end %>
+
+

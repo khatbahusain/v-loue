@@ -1,22 +1,24 @@
-<table class="table table-light">
- <thead>
+<table class="table table-bordered">
+  <thead>
     <tr>
       <th scope="col">Photo</th>
       <th scope="col">Vélo-info</th>    
-      <th scope="col">Info</th>                                  
+      <th scope="col">Info</th>
+      <th scope="col">Info</th>                                        
     </tr>
   </thead>
 
-    <tbody>
     <% @rents.each do |rent| %> 
+    <tbody>
       <tr>                          
         <td><%= image_tag Bike.find(rent.bike_id).avatar, alt: 'avatar' ,width: '200px', height: '200px'%></td>
         <td><%= Bike.find(rent.bike_id).more_info %></td>   
         <td>montant: <%= rent.prix %> €
           <hr>
-            date:<span class="text-success"> <%= rent.date_disponible.strftime("%d/%m/%Y") %> - <%= rent.date_end.strftime("%d/%m/%Y") %> </span> (<%= ((rent.date_end - rent.date_disponible)/60/60/24).to_i %> jours)
-        </td>                             
+          date:<span class="text-success"> <%= rent.date_disponible.strftime("%d/%m/%Y") %> - <%= rent.date_end.strftime("%d/%m/%Y") %> </span> (<%= ((rent.date_end - rent.date_disponible)/60/60/24).to_i %> jours)
+        </td>      
+        <td><a href="<%= new_rent_comment_path(rent.id) %>" class="btn bt-noutline-dark">Noter la location</a></td>                      
       </tr>
     </tbody>
-<% end %>
+  <% end %>
 </table>

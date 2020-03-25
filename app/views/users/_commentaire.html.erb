@@ -1,0 +1,6 @@
+<% @comments = Comment.where(recipient_id: @user.id) %>
+
+<% @comments.each do |comment| %>
+<div class="border m-2 p-2"><span class="text-muted"><%= User.find(comment.sender_id).first_name %> : </span><%= comment.content %></div>
+
+<% end %>
