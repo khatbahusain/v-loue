@@ -1,13 +1,27 @@
-<%= form_tag rent_comments_path, method: "post", multipart: true do %>
+<br><br><br><br><br>
+<div class="container border">
+  <%= form_tag rent_comments_path, method: "post", multipart: true do %>
+  <h3>leave a comment</h3>
+    <div class="form-group row">
+      <label for="example-text-input" class="col-2 col-form-label">your comment </label>
+      <div class="col-10">
+      <%= text_field_tag :'content',"", class: 'form-control' %>
+      </div>
+    </div>
 
-    
-  <%= text_field_tag :'content' %><br>
+    <div class="form-group row">
+      <label for="example-text-input" class="col-2 col-form-label">your note </label>
+      <div class="col-10">
+      <%= select_tag "note", raw("<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>"), multiple: true, class: 'form_input' %>
 
-  <%= number_field_tag :'note' %><br>
+      </div>
+    </div>
 
-  <%= submit_tag "Créer comment" %>
 
-   
+    <div class="form-group row">
+      <%= submit_tag "Créer" , class: "btn btn-dark"%>
+    </div>
 <% end %>
+</div>
 
 
