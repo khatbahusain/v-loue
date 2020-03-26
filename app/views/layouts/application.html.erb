@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Veloo</title>
     <%= csrf_meta_tags %>
@@ -12,11 +13,11 @@
 
 
 
-<body>
+<body id="body">
   <%= render 'layouts/navbar' %>
   <%= render 'layouts/flash' %>
     <%= yield %>
 </body>
-<!--<%= render 'layouts/footer'%> -->  
+  <%= render 'layouts/footer'%>  
   <%= render 'layouts/links_js'%>
 </html>

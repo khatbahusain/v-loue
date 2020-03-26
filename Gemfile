@@ -62,3 +62,4 @@ gem 'stripe'
 gem "aws-sdk-s3", require: false
 gem 'faker'
 gem "administrate"
+gem 'kaminari'

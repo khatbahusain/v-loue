@@ -13,8 +13,7 @@
     <tr>
      <% @rent_period = (cart.date_end - cart.date_disponible)/60/60/24 %>
       <td> <%= image_tag Bike.find(cart.bike_id).imgbike, alt: 'imgbike' ,width: '100px', height: '100px'%></td>
-      <td>de<span class="text-success"> <%= cart.date_disponible.strftime("%d/%m/%Y") %></span> au<span class="text-success">
-      <%= cart.date_end.strftime("%d/%m/%Y") %></span></td>
+      <td><span> du </span><%= cart.date_disponible.strftime("%d/%m/%Y") %> <span> au </span> <%= cart.date_end.strftime("%d/%m/%Y") %></td>
 
       <td> <%= (cart.prix *  @rent_period) %> €</td>
       <% @total = @total + cart.prix %>
@@ -28,7 +27,9 @@
 </table>
 
 <div class="border p-1">
-Total à régler : <span class="display-4 text-success"><%= @total = @total * @rent_period.to_i %> € </span>
+Total à régler : <span class="color_for_icon"><%= @total = @total * @rent_period.to_i %> <i class="fas fa-euro-sign"></i> </span>
+  <%= render "pay_cart" %>
 </div>
+
 
 

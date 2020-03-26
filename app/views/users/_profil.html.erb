@@ -1,0 +1,9 @@
+  <p class="lead">Bonjour, Je m'appelle <%= @user.first_name %> <%= @user.last_name.upcase %></p>
+        <p class="text-muted"><i class="far fa-envelope color_for_icon"></i> Email: <%= @user.email  %></p>
+        <p class="text-muted"><i class="far fa-user color_for_icon"></i> Membre depuis le : <%= @user.created_at.strftime("%d/%m/%Y")  %></p>
+        <p class="text-muted"><i class="fas fa-birthday-cake color_for_icon"></i> Date de naissance : <%= @user.birthday.strftime("%d/%m/%Y") %> (<%= DateTime.now.year - @user.birthday.year%> ans)</p>
+        <p class="text-muted"><i class="fas fa-map-signs color_for_icon"></i> Adresse : 1 rue des Munitionnettes 35000 Rennes</p>
+        <p class="text-muted">locations : <%= Rent.where(user_id: @user.id, payed: true).length %> x <i class="fas fa-bicycle fa-1x color_for_icon"></i> |   <% Comment.where(recipient_id: @user.id).each do |comment| %> 
+        <%= comment.note%>
+        <% end %>
+           <i class="fas fa-heart fa-1x" style="color:#DC143C;"></i></p>

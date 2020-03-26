@@ -2,23 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-body {
-  background-color: #f7f7ff !important;
-  font-family: "mouse-300", Arial, Helvetica, sans-serif;
-  color: #6A6A6A; }
 
-th  {
-    padding: 10px;
-    border: solid 1px gray;
-    color: grey;
-  }
-
-td {
-  padding: 10px;
-  border: solid 1px gray;
-  font-size: large;
+th,tr {
+	font-family: 'Lato', sans-serif;
+	color: #0D0D0D;
+	text-shadow: white 0px 0px 10px;
 }
 
-a {
-  background-color: red; 
+ span {
+  color: #6c757d;
 }
+
+.color_for_icon {
+	color: #14bf98;
+}
+
+.left-list {
+	border-right: solid 1px #14bf98;
+}
+

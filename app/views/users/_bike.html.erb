@@ -1,4 +1,7 @@
-
+  <% if current_user.id == @user.id %>
+  <%= link_to new_bike_path, class: "btn btn-default" do %>
+      <i class='fa fa-plus fa-2x' aria-hidden='true'></i> Ajouter un vélo
+  <% end %>
 
 <table class="table table-bordered">
   <thead>

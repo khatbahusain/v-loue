@@ -1,58 +1,64 @@
-<br><br><br>
-<div class="container-fluid mt-5">
-  <div class="container">   
-    <div class="row">
-      <div class="col-lg-3 col-md-6 col-sm-12">
-        <%= render "avatar" %>
-        <%= render "btn_under_photo" %>
+<br><br>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-3 left-list">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profil</a>
+
+        <a class="nav-link" id="cart" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Ma Cart</a>
+
+        <a class="nav-link" id="rent" data-toggle="pill" href="#v-pills-rent" role="tab" aria-controls="v-pills-rent" aria-selected="false">Mes locations</a>
+
+        <a class="nav-link" id="comment" data-toggle="pill" href="#v-pills-comment" role="tab" aria-controls="v-pills-comment" aria-selected="false">Commentaires</a>
+
+        <a class="nav-link" id="message" data-toggle="pill" href="#v-pills-message" role="tab" aria-controls="v-pills-message" aria-selected="false">Messages</a>
+
       </div>
-      <div class="col border m-1 p-3">
-        <p class="lead">Bonjour, je m'appelle <%= @user.first_name %> <%= @user.last_name.upcase %></p>
-        <p class="text-muted">Email : <%= @user.email  %></p>
-        <p class="text-muted">Membre depuis le : <%= @user.created_at.strftime("%d/%m/%Y")  %></p>
-        <p class="text-muted">Date de naissance : <%= @user.birthday.strftime("%d/%m/%Y") %> (<%= DateTime.now.year - @user.birthday.year%> ans)</p>
-        <p class="text-muted">Locations : <%= Rent.where(user_id: @user.id, payed: true).length %> x <i class="fas fa-bicycle fa-1x" style="color:#008B8B;"></i></p>
-        <p class="text-muted">Likes : <% Comment.where(recipient_id: @user.id).each do |comment| %> 
-        <%= comment.note%>
-        <% end %>
-         x <i class="fas fa-heart fa-1x" style="color:#DC143C;"></i></p>
-      </div>           
     </div>
-       <%= render "tablist" %>   
 
 
-<div class="tab-content" id="myTabContent">
+    <div class="col-9">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+        <div class="container">
+          <div class="row">
+            <div class="col-9">
+              <%= render "profil" %>
+            </div>
+            <div class="col-3">
+              <%= render "avatar" %>
+              <%= render "btn_under_photo" %>
+            </div>
+          </div>
+        </div>
+          
+        </div>
 
-  <div class="tab-pane fade exp-cover" id="cart" role="tabpanel" aria-labelledby="cart-tab">
-    <%= render "cart" %>
-    <%= render "pay_cart" %>
-  </div>
-             
-
-<div class="tab-pane fade exp-cover" id="rent" role="tabpanel" aria-labelledby="rent-tab">           
-<%= render "rent" %>                          
-</div>
-
-              
-<div class="tab-pane fade gallcoo" id="bike" role="tabpanel" aria-labelledby="contact-tab">
-<% if current_user.id == @user.id %>
-      <%= link_to new_bike_path, class: "btn btn-default" do %>
-      <i class='fa fa-plus fa-2x' aria-hidden='true'></i> Ajouter un vélo
-  <% end %>
-<% end %>
-<%= render "bike" %>                                              
-</div>
-
-<div class="tab-pane fade exp-cover" id="commentaire" role="tabpanel" aria-labelledby="message-tab">           
-  <%= render "commentaire" %>        
-</div>
-
-<div class="tab-pane fade exp-cover" id="private_message" role="tabpanel" aria-labelledby="private_message-tab">           
-  <%= render "private_message" %>       
-</div>
+      <% if current_user.id == @user.id %>
+        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+          <%= render "cart" %>
+        </div>
+      <% end %>
 
 
+        <div class="tab-pane fade" id="v-pills-rent" role="tabpanel" aria-labelledby="v-pills-rent-tab">
+        <%= render "rent" %> 
+        </div>
 
-</div>
+        <div class="tab-pane fade" id="v-pills-comment" role="tabpanel" aria-labelledby="v-pills-comment-tab">
+        <%= render "commentaire" %>   
+        </div>
+
+
+      <% if current_user.id == @user.id %>
+        <div class="tab-pane fade" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">   
+          <%= render "private_message" %>   
+        </div>
+      <% end %>
+
+      </div>
+    </div>
 </div>
 </div>
