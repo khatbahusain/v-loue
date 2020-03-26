@@ -17,7 +17,7 @@
       <div class="col-10">
       <% @mybikes.each do |mybike| %>
     
-        <%= @bikeimg = image_tag Bike.find(mybike.id).avatar, alt: 'bike' ,width: '200px', height: '200px'%>
+        <%= @bikeimg = image_tag Bike.find(mybike.id).imgbike, alt: 'bike' ,width: '200px', height: '200px'%>
 
         <%= radio_button_tag 'bike_id', mybike.id, checked: true  %><br>
 

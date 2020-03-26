@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :users
+      resources :rents
+      resources :bikes
+      resources :comments
+      resources :private_messages
+
+      root to: "users#index"
+    end
   devise_for :users
   
   resources :private_messages, only: [:show, :create, :new]

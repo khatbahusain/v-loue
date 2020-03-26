@@ -4,9 +4,14 @@ class BikesController < ApplicationController
   def new
   end
 
+
+
   def create
+    puts "*" * 100
+    puts params
     @bike = Bike.new(user_id: current_user.id, more_info: params[:more_info])
-    @bike.avatar.attach(params[:imgbike])
+    @bike.imgbike.attach(params[:imgbike])
+
     @bike.save
     flash[:success] = 'Vous avez ajouter un vélo !'
     redirect_to user_path(current_user.id)

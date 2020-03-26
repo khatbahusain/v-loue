@@ -1,3 +1,5 @@
+
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -6,12 +8,16 @@
     </tr>
   </thead>
   <% @bikes.each do |bike| %> 
+
+
   <tbody>
     <tr>
-      <% if bike.avatar.attached? %>
-        <td><%= image_tag bike.avatar, alt: 'avatar' ,width: '200px', height: '200px'%></td>
-      <% end %>
-    
+
+
+  
+
+      <td><%=  image_tag bike.imgbike, alt: 'avatar' ,width: '200px', height: '200px'%></td>
+
       <td> <%= bike.more_info %></td>
       <% if current_user.id == @user.id %>
         <td><a href="<%= bike_path(bike.id) %>" class="btn btn-outline-danger" data-method="DELETE"><i class="far fa-trash-alt"></i></a></td>

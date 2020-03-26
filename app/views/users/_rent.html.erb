@@ -11,7 +11,7 @@
     <% @rents.each do |rent| %> 
     <tbody>
       <tr>                          
-        <td><%= image_tag Bike.find(rent.bike_id).avatar, alt: 'avatar' ,width: '200px', height: '200px'%></td>
+
         <td><%= Bike.find(rent.bike_id).more_info %></td>   
         <td>montant: <%= rent.prix %> €
           <hr>
