@@ -7,9 +7,14 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_admin
-
+    
     def authenticate_admin
-      # TODO Add authentication logic here.
+      if current_user.email == "khatba.husain@gmail.com" && current_user.password == "123456"
+        return true
+      else
+        flash[:error] = "Vous n'êtes pas autorisé à accéder à cette session!"
+        redirect_to root_path
+      end
     end
 
     # Override this value to specify the number of elements to display at a time
@@ -19,3 +24,4 @@ module Admin
     # end
   end
 end
+
