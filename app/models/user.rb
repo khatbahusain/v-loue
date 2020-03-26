@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :sender_comments, foreign_key: 'sender_id', class_name: "Comment"
   has_many :received_comments, foreign_key: 'recipient_id', class_name: "Comment"
 
+  has_many :sent_messages, foreign_key: 'sender_id', class_name: "PrivateMessage"
+  has_many :received_messages, foreign_key: 'recipient_id', class_name: "PrivateMessage"
+
 
   has_many :rents
   has_one_attached :avatar

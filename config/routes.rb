@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
   
+  resources :private_messages, only: [:show, :create, :new]
+
+
   resources :users, only: [:show, :update, :edit, :index] do
     resources :avatars, only: [:create]
+    
   end
 
   resources :rents do 
     resources :comments
+
   end
 
   resources :bikes, only: [:new, :create, :show, :destroy]  do
@@ -18,5 +23,6 @@ Rails.application.routes.draw do
 
   get 'pages/contact'
   post 'rents/search'
+  post 'private_messages/replay'
 
 end

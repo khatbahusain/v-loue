@@ -1,0 +1,15 @@
+<br><br><br><br><br>
+
+
+<%= @private_message.content %>
+  <%= form_tag private_messages_replay_path ,multipart: true do %>
+
+      <%= text_area_tag :'content',"", class: 'form-control' %>  
+
+      <%= hidden_field_tag 'recipientMP_id', @private_message.senderMP_id %>
+
+      <%= submit_tag "envoyer" , class: "btn btn-dark"%>
+
+<% end %>
+
+<%= link_to"revenir aux message", user_path(current_user.id) %>

@@ -1,0 +1,21 @@
+<br><br><br><br><br>
+
+<div class="container border">
+  <%= form_tag private_messages_path ,multipart: true do %>
+  <h3>send a message</h3>
+    <div class="form-group row">
+      <label for="example-text-input" class="col-2 col-form-label">message: </label>
+      <%= text_area_tag :'content',"", class: 'form-control' %>  
+    </div>
+    
+      <%= hidden_field_tag 'rent_id', @rent %>
+
+
+    <div class="form-group row">
+      <%= submit_tag "envoyer" , class: "btn btn-dark"%>
+    </div>
+<% end %>
+</div>
+
+
+

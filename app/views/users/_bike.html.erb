@@ -8,9 +8,14 @@
   <% @bikes.each do |bike| %> 
   <tbody>
     <tr>
-      <td><%= image_tag bike.avatar, alt: 'avatar' ,width: '200px', height: '200px'%></td>
+      <% if bike.avatar.attached? %>
+        <td><%= image_tag bike.avatar, alt: 'avatar' ,width: '200px', height: '200px'%></td>
+      <% end %>
+    
       <td> <%= bike.more_info %></td>
-      <td><a href="<%= bike_path(bike.id) %>" class="btn btn-outline-danger" data-method="DELETE"><i class="far fa-trash-alt"></i></a></td>
+      <% if current_user.id == @user.id %>
+        <td><a href="<%= bike_path(bike.id) %>" class="btn btn-outline-danger" data-method="DELETE"><i class="far fa-trash-alt"></i></a></td>
+      <% end %>
     </tr>
   </tbody>
   <% end %>

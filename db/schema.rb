@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_145031) do
+ActiveRecord::Schema.define(version: 2020_03_25_181826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 2020_03_23_145031) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipient_id"], name: "index_comments_on_recipient_id"
     t.index ["sender_id"], name: "index_comments_on_sender_id"
+  end
+
+  create_table "private_messages", force: :cascade do |t|
+    t.bigint "recipientMP_id"
+    t.bigint "senderMP_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "content"
+    t.index ["recipientMP_id"], name: "index_private_messages_on_recipientMP_id"
+    t.index ["senderMP_id"], name: "index_private_messages_on_senderMP_id"
   end
 
   create_table "rents", force: :cascade do |t|
