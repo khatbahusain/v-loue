@@ -1,74 +1,43 @@
-<br><br><br><br><br>
-
+<br><br><br>
 
 <div class="container-fluid">
-
   <div class="card-deck">
         <% @rents.each do |rent| %>
-
-
     <div class="col-3 card p-0">
       <%= image_tag Bike.find(rent.bike_id).imgbike, alt: 'imgbike', class: "rounded", width: '100%' , height: '300px'%>
       <div class="card-body mt-0">
-
-
-
-
-
-
         <p class="card-text"><span>Date: <%= rent.date_disponible.strftime("%d/%m/%Y") %></span> - <span><%= rent.date_end.strftime("%d/%m/%Y") %></span></p>
         <p class="card-text"><% @rent_period = (rent.date_end - rent.date_disponible)/60/60/24 %>
           <td>Prix : <span><%= (rent.prix *  @rent_period) %> € | soit </span><span><%= (rent.prix) %></span> € /jour</p>
       </div>
       <div class="card-footer">
-        <small class="text-muted">user note: 
-        
-        <% @arr_note = [] %>
-
+        <small class="text-muted">user note:       
+        <% @arr_note = [1] %>
         <% @comments_notes = Comment.where(recipient_id: User.find_by(id: Bike.find_by(id: rent.bike_id).user_id)) %>
         <% @comments_notes.each do |comment_note| %>
           <% @arr_note << comment_note.note.to_i %>
         <% end %>
-
-        <%= (@arr_note.sum + 1)/@arr_note.length  %> <i class="fas fa-star text-warning"></i>
-        
-        
+        <%= (@arr_note.sum)/@arr_note.length  %> <i class="fas fa-star text-warning"></i>     
         </small>
       </div> 
       <div class="card-footer">  
-
       <%= link_to rent_path(rent.id), class: "a" do %>
         <i class="far fa-file-alt"> info  </i>
         <% end %>
-
       <%= link_to new_private_message_path(rent_id: rent.id), class: "a"  do %>
         <i class="far fa-envelope"> message  </i>
         <% end %>
-
-
-        <% if user_signed_in? && Rent.find_by(id: rent.id, user_id: current_user.id) %>
-  
+        <% if user_signed_in? && Rent.find_by(id: rent.id, user_id: current_user.id) %> 
         <%= link_to rent_path(rent.id), method: "patch",rent_id: rent.id, remote: true,class: "a" do %>
         <i class='far fa-trash-alt' aria-hidden='true'> supprimer </i>
-        <% end %>
- 
-      
+        <% end %>     
       <% elsif user_signed_in? %>   
-
-  
-        <%= link_to rent_path(rent.id), method: "patch",rent_id: rent.id, remote: true,class: "a" do %>
+      <%= link_to rent_path(rent.id), method: "patch",rent_id: rent.id, remote: true,class: "a" do %>
         <i class='fas fa-cart-plus' aria-hidden='true'> louer </i>
         <% end %>
-
-
-    
       <% end %>
-
       </div> 
     </div>
-    <% end %>
-
-      
+    <% end %>   
   </div>
-
 </div>
