@@ -17,9 +17,11 @@ class UsersController < ApplicationController
 
   
   def update
+    puts "update" * 100
+
     @user = current_user
-      user_update = params.require(:user).permit(:first_name, :last_name, :birthday)
-      if @user.update(user_update)
+      if @user.update(params_user) &&  @user.update(city: params[:city])
+         
         redirect_to user_path(current_user.id)
         flash[:success] = "Les modifications sont bien prises en compte ;)"
       else
@@ -27,6 +29,10 @@ class UsersController < ApplicationController
       end
   end
 
+private
 
+  def params_user
+    params.require(:user).permit(:first_name, :last_name, :birthday, :adresse)
+  end
  
 end

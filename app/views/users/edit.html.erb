@@ -1,37 +1,142 @@
-
-<div class="container">
-  <h3> Modifier mon profil </h3>
+<br><br>
 
 <% if is_my_profile? %> 
-  <div class="card col-lg-12 col-sm-12" >
-        <div class="card-body">
-       <%if @user.avatar.attached?%>
-  <%= image_tag @user.avatar, alt: 'avatar' ,width: '200px', height: '200px'%>
-<%else%>
-<%= image_tag 'unkown_user.png', alt: 'avatar' ,width: '200px', height: '200px'%>
-<%end%>
-  <%= form_tag user_avatars_path(@user), multipart: true do %>
-    <%= file_field_tag :avatar %>
-    <%= submit_tag "mettre à jour", class: "btn btn-dark"  %>
-  <% end %>
+<div class="container">
+<div class="row flex-lg-nowrap">
+  <div class="col">
+    <div class="row">
+      <div class="col mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="e-profile">
+              <div class="row">
+                <div class="col-12 col-sm-auto mb-3">
+                  <div class="mx-auto" style="width: 140px;">
+                    <div class="" style="height: 140px; width: 100px;">
+                      
+                    <%if @user.avatar.attached?%>
+                      <%= image_tag @user.avatar, alt: 'avatar', width: '150px', height: '175px' %>
+                    <% else %>  
+                      <%= image_tag 'unkown_user.png', alt: 'avatar', height: '100px' %>
+                    <%end%>
 
-   <%= form_for current_user, method: "patch", url: user_path  do |f| %>
-    
-          <p class="card-text">Prénom <%= f.text_field :first_name , class: 'form-control' %> </p>
-          <p class="card-text">Nom <%= f.text_field :last_name , class: 'form-control' %> </p>
-           <p class="card-text">Date de naissance <%= f.date_field :birthday , class: 'form-control' %> </p>
-   
-          <hr class="my-4">
-          <a class="btn btn-dark"> <%= f.submit "Modifier" %> </a>
-          <hr class="my-4">
+                    </div>
+                  </div>
+                </div>
+                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                  <div class="text-center text-sm-left mb-2 mb-sm-0">
+                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><%= @user.first_name %> <%= @user.last_name.upcase %> <%= render 'user_verified_admin' %> </h4>
+                    <p class="mb-0"><%= @user.email %></p>
+                    <div class="text-muted"><small>Membre depuis le : <%= @user.created_at.strftime("%d/%m/%Y")  %></small></div>
+                    <div class="mt-2">
+
+                     <%= form_tag user_avatars_path(@user), multipart: true do %>
+                      <button class="btn btn-outline-dark" type="submit">
+                        <i class="fa fa-fw fa-camera"></i>
+                        <span class="color_for_icon">mettre à jour</span>
+                      </button>
+                      <%= file_field_tag :avatar %>
+                    <% end %>
+
+                    </div>
+                  </div>
+                  <div class="text-center text-sm-right">
+
+                    <% if @user.is_admin? %><span class="badge badge-secondary">admin</span><%end%>
+           
+                  </div>
+                </div>
+              </div>
+              <ul class="nav nav-tabs">
+                <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+              </ul>
+
+          <%= form_for current_user, method: "patch", url: user_path  do |f| %>
+              <div class="tab-content pt-3">
+                <div class="tab-pane active">
+                  <form class="form" novalidate="">
+                    <div class="row">
+                      <div class="col">
+                        <div class="row">
+
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Prénom</label>
+                              <%= f.text_field :first_name , class: 'form-control' %>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Nom</label>
+                              <%= f.text_field :last_name , class: 'form-control' %>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Date de naissance</label>
+                              <%= f.date_field :birthday , class: 'form-control' %>
+                            </div>
+                          </div>
+
+
+                        </div>
+
+     
+                        <div class="row">
+                          <div class="col mb-3">
+                            <div class="form-group">
+                              <label>Adresses</label>
+                              <%= f.text_field :adresse , class: 'form-control' %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6 mb-3">
+                     
+                            <div class="form-group">
+                              <label>Ville</label>
+
+                            <select class="browser-default custom-select" name="city">
+                              <% cities = City.all.each do |city| %>
+                                <option><%= city.name %></option>
+                                <% end %>
+                            </select>
+
+
+                            </div>
+                          </div>
+                        </div>
+
+          
+                        <%= f.submit "Modifier", class: "button" %> 
+
+                          <% end %>
+
+                      </div>
+                    </div>
+
+
+
+                  
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-  <% end %>
+
+
+    </div>
+
+  </div>
+</div>
+</div>
 <% else %>
 
 <p class="display-2 text-danger">Ce n'est pas votre profil !! <p>
 <% end %>
 </div>
-
-
-
