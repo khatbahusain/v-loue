@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+
   before_action :authenticate_user!, only: [:show]
+  
   def index
     @notes = 0
     @users = User.all
@@ -18,7 +20,6 @@ class UsersController < ApplicationController
   
   def update
     puts "update" * 100
-
     @user = current_user
       if @user.update(params_user) &&  @user.update(city: params[:city])
          

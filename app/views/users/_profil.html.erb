@@ -2,8 +2,17 @@
         <p class="text-muted"><i class="far fa-envelope color_for_icon"></i> Email: <%= @user.email  %></p>
         <p class="text-muted"><i class="far fa-user color_for_icon"></i> Membre depuis le : <%= @user.created_at.strftime("%d/%m/%Y")  %></p>
         <p class="text-muted"><i class="fas fa-birthday-cake color_for_icon"></i> Date de naissance : <%= @user.birthday.strftime("%d/%m/%Y") %> (<%= DateTime.now.year - @user.birthday.year%> ans)</p>
-        <p class="text-muted"><i class="fas fa-map-signs color_for_icon"></i> Adresse : <%= @user.adresse %> <%= City.find_by(name: @user.city).code_postal %> <%= @user.city %></p>
-        <p class="text-muted">locations : <%= Rent.where(user_id: @user.id, payed: true).length %> x <i class="fas fa-bicycle fa-1x color_for_icon"></i> |   <% Comment.where(recipient_id: @user.id).each do |comment| %> 
-        <%= comment.note%>
+        <p class="text-muted"><i class="fas fa-map-signs color_for_icon"></i> Adresse : <%= @user.adresse %>
+        <% if City.find_by(name: @user.city) %>
+          <%= City.find_by(name: @user.city).code_postal %> 
         <% end %>
-           <i class="fas fa-heart fa-1x" style="color:#DC143C;"></i></p>
+          <%= @user.city %>
+        </p>
+         <% @arr_note = [] %>
+        <p class="text-muted">locations : <%= Rent.where(user_id: @user.id, payed: true).length %> x <i class="fas fa-bicycle fa-1x color_for_icon"></i> |   <% Comment.where(recipient_id: @user.id).each do |comment| %> 
+        <% @arr_note << comment.note%>
+        <% end %>
+        <%= @arr_note.sum/@arr_note.length %> <i class="fas fa-star text-warning"></i></p>
+
+
+    

@@ -3,7 +3,7 @@
 <% @private_messages = PrivateMessage.where(recipientMP_id: @user.id) %>
 
 <% @private_messages.each do |private_message| %>
-Vous avez un nouveaux message de : <%= User.find(private_message.senderMP_id).email %>
+Vous avez un nouveau message de : <%= User.find(private_message.senderMP_id).email %>
 <%= link_to"see message", private_message_path(private_message.id)%><br>
 
 <% end %>

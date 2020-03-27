@@ -1,25 +1,27 @@
-<br><br><br><br><br>
+<br><br><br>
 <div class="container border">
   <%= form_tag rent_comments_path, method: "post", multipart: true do %>
-  <h3>leave a comment</h3>
+  <p>Laissez un commentaire ou donner une note : </p><br>
     <div class="form-group row">
-      <label for="example-text-input" class="col-2 col-form-label">your comment </label>
-      <div class="col-10">
+      <label for="example-text-input" class="col-3 col-form-label">Votre commentaire: </label>
+      <div class="col-9">
       <%= text_field_tag :'content',"", class: 'form-control' %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="example-text-input" class="col-2 col-form-label">your note </label>
-      <div class="col-10">
-      <%= select_tag "note", raw("<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>"), multiple: true, class: 'form_input' %>
+      <label for="example-text-input" class="col-6 col-form-label">La note sur 5 <i class="fas fa-star text-warning"></i>: </label>
 
+      <div class="col-6">
+      <%= select_tag "note", raw("<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>"), multiple: true, class: 'form_input', name: "note" %>
       </div>
+
     </div>
 
 
-    <div class="form-group row">
-      <%= submit_tag "Créer" , class: "btn btn-dark"%>
+    <div class="form-group row justify-content-center">
+
+      <%= submit_tag "Envoyer" , class: "button"%>
     </div>
 <% end %>
 </div>

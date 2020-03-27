@@ -1,15 +1,21 @@
 <br><br><br><br><br>
 
+<div class="container">
+ <span class="text-muted">De: </span> <%= User.find(@private_message.senderMP_id).email %> (<%= User.find(@private_message.senderMP_id).first_name %>) <%= link_to"affich profil", user_path(@private_message.senderMP_id) %>
 
-<%= @private_message.content %>
+
+ <p><span class="text-muted">Message: </span> <%= @private_message.content %></p>
   <%= form_tag private_messages_replay_path ,multipart: true do %>
 
-      <%= text_area_tag :'content',"", class: 'form-control' %>  
+      <%= text_area_tag :'content',"", class: 'form-control' %><br>
 
       <%= hidden_field_tag 'recipientMP_id', @private_message.senderMP_id %>
 
-      <%= submit_tag "envoyer" , class: "btn btn-dark"%>
+      <%= submit_tag "Repondre" , class: "button"%>
 
 <% end %>
 
-<%= link_to"revenir aux message", user_path(current_user.id) %>
+<%= link_to"Revenir aux messages", user_path(current_user.id) %>
+
+
+</div>

@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     end
   devise_for :users
   
-  resources :private_messages, only: [:show, :create, :new]
-
+  resources :private_messages, only: [:show, :new, :create]
+ 
 
   resources :users, only: [:show, :update, :edit, :index] do
     resources :avatars, only: [:create]
@@ -33,5 +33,6 @@ Rails.application.routes.draw do
   get 'pages/contact'
   post 'rents/search'
   post 'private_messages/replay'
+
 
 end

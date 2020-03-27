@@ -1,5 +1,5 @@
 <br><br>
-
+      
 <div class="container-fluid">
   <div class="row">
 
@@ -7,14 +7,21 @@
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profil</a>
 
+        <% if is_my_profile?%>
         <a class="nav-link" id="cart" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Ma Cart</a>
-
-        <a class="nav-link" id="rent" data-toggle="pill" href="#v-pills-rent" role="tab" aria-controls="v-pills-rent" aria-selected="false">Mes locations</a>
+   
+        <a class="nav-link" id="rent" data-toggle="pill" href="#v-pills-rent" role="tab" aria-controls="v-pills-rent" aria-selected="false">Locations</a>
+         <% end %>
 
         <a class="nav-link" id="comment" data-toggle="pill" href="#v-pills-comment" role="tab" aria-controls="v-pills-comment" aria-selected="false">Commentaires</a>
 
+        <% if is_my_profile?%>
         <a class="nav-link" id="message" data-toggle="pill" href="#v-pills-message" role="tab" aria-controls="v-pills-message" aria-selected="false">Messages</a>
+        <% end %>
 
+
+        <a class="nav-link" id="bike" data-toggle="pill" href="#v-pills-bike" role="tab" aria-controls="v-pills-bike" aria-selected="false">Vélos</a> 
+        
       </div>
     </div>
 
@@ -42,7 +49,6 @@
         </div>
       <% end %>
 
-
         <div class="tab-pane fade" id="v-pills-rent" role="tabpanel" aria-labelledby="v-pills-rent-tab">
         <%= render "rent" %> 
         </div>
@@ -51,14 +57,17 @@
         <%= render "commentaire" %>   
         </div>
 
-
       <% if current_user.id == @user.id %>
         <div class="tab-pane fade" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">   
           <%= render "private_message" %>   
         </div>
       <% end %>
 
+        <div class="tab-pane fade" id="v-pills-bike" role="tabpanel"  aria-labelledby="v-pills-bike-tab">
+          <%= render "bike" %> 
+        </div>
       </div>
     </div>
 </div>
 </div>
+

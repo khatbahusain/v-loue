@@ -1,6 +1,7 @@
 class RentsController < ApplicationController
   before_action :authenticate_user!, except: [:index,:search]
 
+
   def index
     @rents = Rent.where(payed: false).order(:id)
   end
@@ -54,8 +55,13 @@ class RentsController < ApplicationController
     if params[:date] == ""
       params[:date] = "10-10-2019"
     end
-
     @rents = Rent.where(payed: false).where("DATE(date_disponible) >= ?", params[:date]).order('date_disponible')
+  end
+
+  private
+
+  def is_user_verified?
+    @user.verified?
   end
   
 end
