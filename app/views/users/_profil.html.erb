@@ -1,4 +1,4 @@
-  <p class="lead">Bonjour, Je m'appelle <%= @user.first_name %> <%= @user.last_name.upcase %></p>
+  <p class="lead">Bonjour, Je m'appelle <%= @user.first_name %> <%= @user.last_name.upcase %> <%= render 'user_verified' %> </p>
         <p class="text-muted"><i class="far fa-envelope color_for_icon"></i> Email: <%= @user.email  %></p>
         <p class="text-muted"><i class="far fa-user color_for_icon"></i> Membre depuis le : <%= @user.created_at.strftime("%d/%m/%Y")  %></p>
         <p class="text-muted"><i class="fas fa-birthday-cake color_for_icon"></i> Date de naissance : <%= @user.birthday.strftime("%d/%m/%Y") %> (<%= DateTime.now.year - @user.birthday.year%> ans)</p>
