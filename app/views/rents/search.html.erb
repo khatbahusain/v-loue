@@ -12,7 +12,7 @@
       </div>
       <div class="card-footer">
         <small class="text-muted">user note:       
-        <% @arr_note = [] %>
+        <% @arr_note = [1] %>
         <% @comments_notes = Comment.where(recipient_id: User.find_by(id: Bike.find_by(id: rent.bike_id).user_id)) %>
         <% @comments_notes.each do |comment_note| %>
           <% @arr_note << comment_note.note.to_i %>
