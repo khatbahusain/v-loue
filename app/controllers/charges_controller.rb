@@ -1,6 +1,7 @@
 class ChargesController < ApplicationController
   before_action :authenticate_user!
-  
+  after_action :after_payment
+
   def new
   end
   
@@ -20,12 +21,18 @@ class ChargesController < ApplicationController
       currency: 'eur',
     })
 
-    Rent.where(user_id: current_user.id).update(payed: true)
-    flash[:success] = 'Le paiement est effectué'
     redirect_to user_path(current_user.id)
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
   end
+
+
+  def after_payment
+    Rent.where(user_id: current_user.id).update(payed: true)
+    flash[:success] = 'Le paiement est effectué. Veuillez consulter votre boite Mail !'
+    RentMailer.after_rent(current_user).deliver_now
+  end
+
 end

@@ -28,7 +28,6 @@ class RentsController < ApplicationController
   end
 
   def update
-    puts "P" * 1000
     @rent = Rent.find(params[:id])
 
     if (@rent.user_id == nil)

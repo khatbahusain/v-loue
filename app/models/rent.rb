@@ -1,4 +1,5 @@
 class Rent < ApplicationRecord
+
 #  has_many :bikes
 #  belongs_to :user
   validates :date_disponible, presence: true
@@ -21,6 +22,8 @@ class Rent < ApplicationRecord
       self.errors.add(:prix, "prix ne peut pas etre zéro")
     end
   end
+
+
 
 
 end
