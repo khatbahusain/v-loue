@@ -1,23 +1,30 @@
 <br><br><br>
 
 <div class="container-fluid">
-  <div class="card-deck">
+  <div class="row justify-content-center">
         <% @rents.each do |rent| %>
-    <div class="col-3 card p-0">
+    <div class="col-3 card p-0 m-2">
       <%= image_tag Bike.find(rent.bike_id).imgbike, alt: 'imgbike', class: "rounded", width: '100%' , height: '300px'%>
       <div class="card-body mt-0">
         <p class="card-text"><span>Date: <%= rent.date_disponible.strftime("%d/%m/%Y") %></span> - <span><%= rent.date_end.strftime("%d/%m/%Y") %></span></p>
         <p class="card-text"><% @rent_period = (rent.date_end - rent.date_disponible)/60/60/24 %>
           <td>Prix : <span><%= (rent.prix *  @rent_period) %> € | soit </span><span><%= (rent.prix) %></span> € /jour</p>
+
+        <% if rent.updated_at == Date.today %>
+          hello world
+        <% end %>
+
       </div>
       <div class="card-footer">
-        <small class="text-muted">user note:       
+        <small class="text-muted">j'aime:       
         <% @arr_note = [1] %>
         <% @comments_notes = Comment.where(recipient_id: User.find_by(id: Bike.find_by(id: rent.bike_id).user_id)) %>
         <% @comments_notes.each do |comment_note| %>
           <% @arr_note << comment_note.note.to_i %>
         <% end %>
-        <%= (@arr_note.sum)/@arr_note.length  %> <i class="fas fa-star text-warning"></i>     
+        <%= (@arr_note.sum)/@arr_note.length  %> <i class="fas fa-heart"></i>     
+
+      
         </small>
       </div> 
       <div class="card-footer">  

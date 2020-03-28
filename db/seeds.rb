@@ -9,17 +9,14 @@
 
 
 20.times do
-  User.create!(
-    email: Faker::Internet.email(domain: 'yopmail.com'),
-    password: "123456",
-    password_confirmation: "123456",
-    birthday: "10-10-1990 10:10"
+  Rent.create(
+    date_disponible: Faker::Date.in_date_period(year: 2020, month: 4),
+    date_end: Faker::Date.in_date_period(year: 2020, month: 5),
+    user_id: nil,
+    bike_id: Bike.all.sample.id,
+    prix: Random.rand(7),
+    payed: false
     )
+    puts "rent created"
 end
 
-# to do how to seed image ?
-# 100.times do |n|
-#  Bike.create!(more_info:         Faker::Lorem.sentence,
-#              user_id:           (User.all.ids).sample
-#                 )
-#end

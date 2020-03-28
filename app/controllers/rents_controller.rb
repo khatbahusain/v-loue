@@ -52,9 +52,9 @@ class RentsController < ApplicationController
 
   def search
     if params[:date] == ""
-      params[:date] = "10-10-2019"
+      params[:date] = Date.today
     end
-    @rents = Rent.where(payed: false).where("DATE(date_disponible) >= ?", params[:date]).order('date_disponible')
+    @rents = Rent.where(payed: false).where("DATE(date_disponible) >= ?", params[:date]).order(:id).order('date_disponible')
   end
 
   private

@@ -8,7 +8,7 @@ class RentMailer < ApplicationMailer
 
   def after_rent(user)
     @user = user
-    @orders = Rent.where(user_id: user.id, payed: true)
+    @orders = Rent.where(user_id: user.id, payed: true, updated_at: Date.today)
     
     mail(to: @user.email, subject: 'location faite!') 
   end

@@ -30,7 +30,8 @@ class ChargesController < ApplicationController
 
 
   def after_payment
-    Rent.where(user_id: current_user.id).update(payed: true)
+    Rent.where(user_id: current_user.id).update(payed: true, updated_at: Date.today)
+    
     flash[:success] = 'Le paiement est effectué. Veuillez consulter votre boite Mail !'
     RentMailer.after_rent(current_user).deliver_now
   end
