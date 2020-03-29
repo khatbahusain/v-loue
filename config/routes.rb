@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :rents do 
-    resources :comments
+    resources :comments, only: [:create, :show, :new]
 
   end
 
@@ -27,12 +27,11 @@ Rails.application.routes.draw do
     resources :img_bikes, only: [:create]
   end
 
-  resources :charges
-  root to: 'pages#index'
+  resources :charges, only: [:new, :create]
 
+  root to: 'pages#index'
   get 'pages/contact'
   post 'rents/search'
   post 'private_messages/replay'
-
 
 end

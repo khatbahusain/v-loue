@@ -1,5 +1,5 @@
 <br><br>
-      
+  
 <div class="container-fluid">
   <div class="row">
 
@@ -8,7 +8,13 @@
         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profil</a>
 
         <% if is_my_profile?%>
-        <a class="nav-link" id="cart" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Ma Cart</a>
+        <a class="nav-link" id="cart" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+        Ma Cart 
+        
+        <% if Rent.where(user_id: current_user.id, payed: false).length > 0 %>
+          <span class="badge badge-pill badge-danger"><%= Rent.where(user_id: current_user.id, payed: false).length%> <i class="fas fa-cart-plus"></i></span>
+        <% end %>
+        </a>
    
         <a class="nav-link" id="rent" data-toggle="pill" href="#v-pills-rent" role="tab" aria-controls="v-pills-rent" aria-selected="false">Locations</a>
          <% end %>
@@ -71,3 +77,5 @@
 </div>
 </div>
 
+<div class="mt-7 text-white">.</div>
+<div class="mt-7 text-white">.</div>

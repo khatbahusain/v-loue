@@ -103,70 +103,6 @@ a, p, .nav-link {
 }
 
 
-.header {
-	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/3954635/pexels-photo-3954635.jpeg?auto=compress&cs=tinysrgb&h=650&w=940') center center no-repeat;
-	background-size: cover;
-
-}
-
-.header .header-content {
-	padding-bottom: 2.125rem;
-	font-family: 'Lato', sans-serif;
-
-}
-
-	.header .header-content {
-		padding-top: 6.75rem;
-		padding-bottom: 25.5rem;
-		font-family: 'Lato', sans-serif;
-
-	}
-	.button {
-		display: inline-block;
-		border-radius: 6px;
-		background-color: #14bf98;
-		border: none;
-		color: #FFFFFF;
-		text-align: center;
-		font-size: 23px;
-		padding: 12px;
-		width: 220px;
-		transition: all 0.5s;
-		cursor: pointer;
-
-	}
-	
-	.button span {
-		cursor: pointer;
-		display: inline-block;
-		position: relative;
-		transition: 0.5s;
-	}
-	
-	.button span:after {
-		content: '\00bb';
-		position: absolute;
-		opacity: 0;
-		top: 0;
-		right: -25px;
-		transition: 0.5s;
-	}
-	
-	.button:hover span {
-		padding-right: 25px;
-	}
-	
-	.button:hover span:after {
-		opacity: 1;
-		right: 0;
-	}
-
-
-
-
-
-
-
 
 	.footer {
 		
@@ -177,35 +113,4 @@ a, p, .nav-link {
 		background: linear-gradient(-20deg, black 70%, #14bf98 40%);
 		}
 	
-		.above_footer {
-			background-color: white;
-			background-size: cover;
-			height: 400px;
-		}
-
-
-		.typewriter h1 {
-			color: #fff;
-			overflow: hidden; /* Ensures the content is not revealed until the animation */
-			border-right: .15em solid #14bf98; /* The typwriter cursor */
-			white-space: nowrap; /* Keeps the content on a single line */
-			margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-			letter-spacing: .15em; /* Adjust as needed */
-			animation: 
-				typing 3.5s steps(30, end),
-				blink-caret .5s step-end infinite;
-		}
-		
-		/* The typing effect */
-		@keyframes typing {
-			from { width: 0 }
-			to { width: 100% }
-		}
-		
-		/* The typewriter cursor effect */
-		@keyframes blink-caret {
-			from, to { border-color: transparent }
-			50% { border-color: #14bf98 }
-		}
-		
 

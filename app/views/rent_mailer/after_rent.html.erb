@@ -7,8 +7,11 @@
     <div class="container">
     <h1>Merci <%= @user.first_name %> !</h1>
       <% @orders.each do |order| %>
-      <p>Vous avez une locations du <%= order.date_disponible.strftime("%d/%m/%Y") %> au <%= order.date_end.strftime("%d/%m/%Y") %></p>
-      <p>Vous avez payé <%= order.prix %> €</p>
+      <% @days = (rent.date_end - rent.date_disponible)/60/60/24) %>
+      
+      <p>Vous avez une nouvelle location du <%= order.date_disponible.strftime("%d/%m/%Y") %> au <%= order.date_end.strftime("%d/%m/%Y") %></p>
+ 
+      <p>Vous avez payé <%= order.prix * @days %> €</p>
       <hr>
       <% end %>
       <p>Merci et à bientôt chez <span class="text-sucess">V-loue</span></p>

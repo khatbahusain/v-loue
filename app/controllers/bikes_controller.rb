@@ -4,8 +4,6 @@ class BikesController < ApplicationController
   def new
   end
 
-
-
   def create
     puts "*" * 100
     puts params
@@ -18,9 +16,7 @@ class BikesController < ApplicationController
   end
 
   def show
-
   end
-
 
   def destroy
     Bike.find(params[:id]).destroy

@@ -5,9 +5,12 @@
 
 
  <p><span class="text-muted">Message: </span> <%= @private_message.content %></p>
-  <%= form_tag private_messages_replay_path ,multipart: true do %>
 
-      <%= text_area_tag :'content',"", class: 'form-control' %><br>
+ <hr>
+
+  <%= form_tag private_messages_replay_path ,class: "border p-2", multipart: true do %>
+
+      <%= text_field_tag :'content',"", class: 'form-control' %><br>
 
       <%= hidden_field_tag 'recipientMP_id', @private_message.senderMP_id %>
 
@@ -19,3 +22,6 @@
 
 
 </div>
+<br>
+
+<div class="mt-7 text-white">.</div>

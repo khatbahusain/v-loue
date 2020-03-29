@@ -13,7 +13,7 @@
 
 
     <div class="form-group row">
-      <label for="example-text-input" class="col-2 col-form-label">choose one of your bikes</label>
+      <label for="example-text-input" class="col-2 col-form-label">Choisissez l'un de vos vélos</label>
       <div class="col-10">
       <% @mybikes.each do |mybike| %>
     
@@ -29,7 +29,7 @@
     <div class="form-group row">
     <label for="example-text-input" class="col-2 col-form-label">prix</label>
       <div class="col-10">
-      <%= number_field_tag :'prix' ,"", class: ""%> € / per day    
+      <%= number_field_tag :'prix' ,"", class: ""%> € / par jour    
       </div>
     </div>
 
@@ -48,7 +48,7 @@
     </div>
 
     <div class="form-group row">
-      <%= submit_tag "Créer" , class: "btn btn-dark center-block"%>
+      <%= submit_tag "Créer" , class: "button"%>
     </div>
 <% end %>
 </div>
@@ -59,3 +59,6 @@
 
 
 
+<div class="mt-7 text-white">.</div>
+<div class="mt-7 text-white">.</div>
+<div class="mt-7 text-white">.</div>

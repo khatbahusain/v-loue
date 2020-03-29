@@ -1,4 +1,3 @@
-
 <header id="header" class="header">
   <div class="header-content">
     <div class="container">
@@ -16,7 +15,7 @@
         <%= date_field_tag :'date',"", class: 'p-4 form-control', id: "btnsearch" %>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-12">
-        <button type="submit" class="button" style="vertical-align:middle"><span>Rechercher </span></button>
+        <button type="submit" class="button" style="vertical-align:middle"><span>Rechercher </span></button><span class="text-white">Locations disponibles: <span class="lead color_for_icon"><%= Rent.all.length %></span></span>
         <% end %>
         </div>
       </div>
@@ -24,3 +23,39 @@
   </div>
 </header>
 
+
+
+
+<div class="col-lg-10 offset-lg-1 pt-5 pb-5">
+  <div id="client-testimonial-carousel" class="carousel slide" data-ride="carousel" style="height:200px;">
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active text-center p-4">
+        <blockquote class="blockquote text-center border">
+          <p class="mb-0"><i class="fas fa-bicycle color_for_icon"></i> Un moyen facile de location de vélos entre particuliers! Pour le locataire, il suffit de réserver le vélo via l'application puis d'aller le récupérer.
+          </p>
+    
+        </blockquote>
+      </div>
+      <div class="carousel-item text-center p-4">
+        <blockquote class="blockquote text-center border">
+          <p class="mb-0"><i class="fas fa-bicycle color_for_icon"></i> Les utilisateurs peuvent noter les autres utilisateurs.
+          </p>
+ 
+        </blockquote>
+      </div>
+      <div class="carousel-item text-center p-4">
+        <blockquote class="blockquote text-center border">
+          <p class="mb-0"><i class="fas fa-bicycle color_for_icon"></i> Les utilisateurs peuvent communiquer entre eux par messages privés.
+          </p>
+      
+        </blockquote>
+      </div>
+    </div>
+
+  </div>
+      <ol class="carousel-indicators">
+      <li class="color_for_icon" data-target="#client-testimonial-carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#client-testimonial-carousel" data-slide-to="1"></li>
+      <li data-target="#client-testimonial-carousel" data-slide-to="2"></li>
+    </ol>
+</div>

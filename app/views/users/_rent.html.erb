@@ -10,11 +10,13 @@
   </thead>
 
     <% @rents.each do |rent| %> 
+    <% @days = (rent.date_end - rent.date_disponible)/60/60/24 %>
     <tbody>
       <tr>                          
         <td><%= image_tag Bike.find(rent.bike_id).imgbike, alt: 'imgbike' ,width: '100px', height: '100px'%></td>
         <td><%= Bike.find(rent.bike_id).more_info %></td>   
-        <td>montant: <%= rent.prix %> €
+        <td><span>montant: </span><%= (rent.prix * @days).to_i %> €
+
           <hr>
           <p><span>Date: </span><%= rent.date_disponible.strftime("%d/%m/%Y") %> - <%= rent.date_end.strftime("%d/%m/%Y") %> <span> (<%= ((rent.date_end - rent.date_disponible)/60/60/24).to_i %> jours)</span>
         </td>      

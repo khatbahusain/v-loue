@@ -40,24 +40,22 @@ class RentsController < ApplicationController
       flash[:success] = 'Vous avez suprimer une location à votre cart !'
       redirect_to rents_path
     end
-
-
   end
 
 
   def destroy
     Rent.find(params[:id]).update(user_id: nil)
-    redirect_to rents_path
+    redirect_to user_path(current_user.id)
   end
 
   def search
     if params[:date] == ""
       params[:date] = Date.today
     end
-    @rents = Rent.where(payed: false).where("DATE(date_disponible) >= ?", params[:date]).order(:id).order('date_disponible')
+    @rents = Rent.where(payed: false).where("DATE(date_disponible) >= ?", params[:date]).order('date_disponible').order(:id)
   end
 
-  private
+private
 
   def is_user_verified?
     @user.verified?

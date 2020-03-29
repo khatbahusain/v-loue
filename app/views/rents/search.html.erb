@@ -1,5 +1,7 @@
 <br><br><br>
 
+<% if @rents.length > 0 %>
+
 <div class="container-fluid">
   <div class="row justify-content-center">
         <% @rents.each do |rent| %>
@@ -10,10 +12,6 @@
         <p class="card-text"><% @rent_period = (rent.date_end - rent.date_disponible)/60/60/24 %>
           <td>Prix : <span><%= (rent.prix *  @rent_period) %> € | soit </span><span><%= (rent.prix) %></span> € /jour</p>
 
-        <% if rent.updated_at == Date.today %>
-          hello world
-        <% end %>
-
       </div>
       <div class="card-footer">
         <small class="text-muted">j'aime:       
@@ -23,10 +21,9 @@
           <% @arr_note << comment_note.note.to_i %>
         <% end %>
         <%= (@arr_note.sum)/@arr_note.length  %> <i class="fas fa-heart"></i>     
-
-      
         </small>
       </div> 
+
       <div class="card-footer">  
       <%= link_to rent_path(rent.id), class: "a" do %>
         <i class="far fa-file-alt"> info  </i>
@@ -48,3 +45,22 @@
     <% end %>   
   </div>
 </div>
+
+<% else %>
+
+
+<div class="container justify-content-center">
+
+  <p>Pas de vélos disponibles à cette date <i class="far fa-frown color_for_icon"></i></p>
+  <a href="<%= root_path %>">changer la date </a>
+
+
+</div>
+
+<% end %>
+
+
+
+<div class="mt-7 text-white">.</div>
+<div class="mt-7 text-white">.</div>
+<div class="mt-7 text-white">.</div>

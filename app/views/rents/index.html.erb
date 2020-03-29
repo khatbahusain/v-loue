@@ -16,13 +16,15 @@
 
       </div>
       <div class="card-footer">
-        <small class="text-muted">user note:       
+        <small class="text-muted">j'aime:       
         <% @arr_note = [1] %>
         <% @comments_notes = Comment.where(recipient_id: User.find_by(id: Bike.find_by(id: rent.bike_id).user_id)) %>
         <% @comments_notes.each do |comment_note| %>
           <% @arr_note << comment_note.note.to_i %>
         <% end %>
-        <%= (@arr_note.sum)/@arr_note.length  %> <i class="fas fa-star text-warning"></i>     
+        <%= (@arr_note.sum)/@arr_note.length  %> <i class="fas fa-heart"></i>     
+
+      
         </small>
       </div> 
       <div class="card-footer">  
@@ -46,3 +48,7 @@
     <% end %>   
   </div>
 </div>
+
+
+<div class="mt-7 text-white">.</div>
+<div class="mt-7 text-white">.</div>

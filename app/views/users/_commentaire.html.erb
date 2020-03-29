@@ -1,6 +1,25 @@
-<% @comments = Comment.where(recipient_id: @user.id) %>
+<main role="main" class="container">
 
-<% @comments.each do |comment| %>
-<div class="border m-2 p-2"><span class="text-muted"><%= User.find(comment.sender_id).first_name %> : </span><%= comment.content %></div>
 
-<% end %>
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Commentaires sur mes locations proposées:</h6>
+
+    <% @comments = Comment.where(recipient_id: @user.id) %>
+    <% @comments.each do |comment| %>
+    <div class="media text-muted pt-3">
+
+      <%=  image_tag User.find(comment.sender_id).avatar, alt: 'avatar' ,width: '50px', height: '50px', class: "rounded-circle"%>
+
+
+
+      <p class="media-body pb-3 p-2 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark"> De: <%= User.find(comment.sender_id).email %>  | <span> date: <%= comment.created_at.strftime("%d/%m/%Y")%> </span>  </strong>
+       <%= comment.content %>
+      </p>
+    </div>
+    
+   <% end %>
+    <small class="d-block text-right mt-3">
+      <a href="#">tous les commentaires</a>
+    </small>
+  </div>

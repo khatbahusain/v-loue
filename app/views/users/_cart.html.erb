@@ -14,7 +14,7 @@
     <tr>
 
     <% @rent_period = (cart.date_end - cart.date_disponible)/60/60/24 %>
-    <%= @rent_period = @rent_period.to_i %>
+    <% @rent_period = @rent_period.to_i %>
       <td> <%= image_tag Bike.find(cart.bike_id).imgbike, alt: 'imgbike' ,width: '100px', height: '100px'%></td>
       <td><span> du </span><%= cart.date_disponible.strftime("%d/%m/%Y") %> <span> au </span> <%= cart.date_end.strftime("%d/%m/%Y") %></td>
 
