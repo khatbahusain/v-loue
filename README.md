@@ -2,13 +2,13 @@
 # V-loue : Location de vélo entre particuliers (version MVP)
 
 
-## 1. Présentation :film_projector:
+## 1. Présentation 
 
 
 ### V-loue  intervient en proposant à toute personne possédante déjà un vélo mais ne l'utilisant pas h 24 de louer à d'autres personnes pour un petit prix.
 
 
-## 2. Parcours utilisateur :raising_hand:
+## 2. Parcours utilisateur 
 
 
   * L'utilisateur peut soit proposer son vélo à la location, soit louer un vélo proposé.
