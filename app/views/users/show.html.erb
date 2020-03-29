@@ -22,7 +22,14 @@
         <a class="nav-link" id="comment" data-toggle="pill" href="#v-pills-comment" role="tab" aria-controls="v-pills-comment" aria-selected="false">Commentaires</a>
 
         <% if is_my_profile?%>
-        <a class="nav-link" id="message" data-toggle="pill" href="#v-pills-message" role="tab" aria-controls="v-pills-message" aria-selected="false">Messages</a>
+        <a class="nav-link" id="message" data-toggle="pill" href="#v-pills-message" role="tab" aria-controls="v-pills-message" aria-selected="false">
+        Messages
+        
+         <% if @messages_unread = PrivateMessage.where(recipientMP_id: @current_user.id, read: false).length > 0 %>
+          <span class="badge badge-pill badge-info"><%= PrivateMessage.where(recipientMP_id: @current_user.id, read: false).length %></span>
+        <% end %>
+
+        </a>
         <% end %>
 
 

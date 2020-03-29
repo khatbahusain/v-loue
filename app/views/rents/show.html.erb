@@ -1,9 +1,11 @@
+<br>
+
 <div class="container">
   <div class="card mb-3">
   <%= image_tag Bike.find(@rent.bike_id).imgbike, alt: 'avatar' ,width: '400px', height: '400px'%>
     <div class="card-body">
 
-      <h5 class="card-title">Propriétaire: <%= User.find(Bike.find(@rent.bike_id).user_id).email %><a href="<%= user_path(User.find(Bike.find(@rent.bike_id).user_id)) %>%"> affiche profil</a></h5>
+      <h5 class="card-title">Propriétaire: <%= User.find(Bike.find(@rent.bike_id).user_id).email %><a href="<%= user_path(User.find(Bike.find(@rent.bike_id).user_id)) %>" class="color_for_icon"> affiche profil <i class="far fa-user"></i></a></h5>
 
       <% @rent_period = (@rent.date_end - @rent.date_disponible)/60/60/24 %>
       <p class="card-text">total prix: <%= @rent.prix * @rent_period %> € / soit <span> <%= @rent.prix %> € par jour</span></p>

@@ -1,13 +1,9 @@
-
 <% if @user.first_name %>
   <p class="lead">Bonjour, Je m'appelle <%= @user.first_name %> <%= @user.last_name.upcase %> 
 <% end %>
   <%= render 'user_verified_admin' %>
 
-  <% if @user.is_admin? %>
-  <span class="badge badge-secondary">admin</span>
-  <%end%>
-  
+
   </p>
 
         <p class="text-muted"><i class="far fa-envelope color_for_icon"></i> Email: <%= @user.email  %></p>

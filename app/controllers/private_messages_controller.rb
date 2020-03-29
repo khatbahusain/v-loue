@@ -3,9 +3,8 @@ class PrivateMessagesController < ApplicationController
   
   
   def show
-    puts "why" * 100
-
     @private_message = PrivateMessage.find(params[:id])
+    @private_message.update(read: true)
   end
 
   def new
@@ -13,8 +12,6 @@ class PrivateMessagesController < ApplicationController
   end
 
   def create
-    puts "*" * 150
-    puts params
 
     private_message_to = User.find(Bike.find_by(id: Rent.find(params[:rent_id]).bike_id).user_id).id
 
@@ -31,7 +28,6 @@ class PrivateMessagesController < ApplicationController
   end
 
   def replay
-    puts "replay" * 100
     PrivateMessage.create(senderMP_id: current_user.id, recipientMP_id: params[:recipientMP_id], content: params[:content])
   end
 

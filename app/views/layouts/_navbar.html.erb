@@ -38,8 +38,7 @@
                            <a href="<%= user_path(current_user.id) %>"><%= image_tag "unkown_user.png", alt: 'avatar' ,width: '70px', height: '70px', class: "rounded-circle"%></a>
                         <% end %>
                         <a href="<%= user_path(current_user.id)%>" class="badge badge-danger"><%= Rent.where(user_id: current_user.id, payed: false).length%> <i class="fas fa-cart-plus"></i></a>
-                 
-                       
+          
                       <% end %>
                   </li>
  

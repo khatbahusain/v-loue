@@ -1,10 +1,19 @@
 <br><br>
-
+<p class="text-info"> Vos messages <i class="far fa-envelope-open"></i></p>
 <% @private_messages = PrivateMessage.where(recipientMP_id: @user.id) %>
 
 <% @private_messages.each do |private_message| %>
-Vous avez un nouveau message de : <%= User.find(private_message.senderMP_id).email %>
-<%= link_to"see message", private_message_path(private_message.id)%><br>
+
+<% if private_message.read %>
+
+  Vous avez un message de : <%= User.find(private_message.senderMP_id).email %>
+
+<% else %>
+<hr>
+  <p class="text-info"> Nouveaux messages <i class="far fa-envelope"></i></p>
+  Vous avez un nouveau message de : <%= User.find(private_message.senderMP_id).email %>
+<% end %>
+  <%= link_to"Voir message", private_message_path(private_message.id), class: "text-info"%><br>
 
 <% end %>
 

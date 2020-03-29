@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_074556) do
+ActiveRecord::Schema.define(version: 2020_03_29_200349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_03_27_074556) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "content"
+    t.boolean "read", default: false
     t.index ["recipientMP_id"], name: "index_private_messages_on_recipientMP_id"
     t.index ["senderMP_id"], name: "index_private_messages_on_senderMP_id"
   end
@@ -115,6 +116,8 @@ ActiveRecord::Schema.define(version: 2020_03_27_074556) do
     t.boolean "is_admin?", default: false
     t.string "adresse", default: " "
     t.string "city"
+    t.bigint "city_id"
+    t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
