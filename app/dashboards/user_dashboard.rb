@@ -14,7 +14,7 @@ class UserDashboard < Administrate::BaseDashboard
     received_messages: Field::HasMany.with_options(class_name: "PrivateMessage"),
     rents: Field::HasMany,
    
-    avatar_blob: Field::HasOne,
+   
     id: Field::Number,
     email: Field::String,
     encrypted_password: Field::String,
@@ -51,8 +51,7 @@ class UserDashboard < Administrate::BaseDashboard
   sent_messages
   received_messages
   rents
-  avatar_attachment
-  avatar_blob
+
   id
   email
   encrypted_password

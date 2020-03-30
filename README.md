@@ -41,13 +41,43 @@
 * Utilisation de Bootstrap.
 
 
-*Pleins d’autres choses qui viendront à la conception de la charte graphique et de la maquette plus précise du site*
-
-
 ### 3.3. Backend
 
-* Ruby
-* Ruby on Rails
+* Ruby (version: 2.6.3p62)
+* Rails (version: 6.0.2.1)
+
+# Installation en local
+* Configuration
+
+``` git clone https://github.com/khatba/v-loue.git ```
+
+``` cd v-loue ```
+
+``` bundle install ```
+
+* Database creation
+
+``` rails db:create ```
+
+``` rails db:migrate ```
+
+``` rails server ```
+
+*  http://localhost:3000/
+
+
+*  Compte Administrateur
+email : v-loue2020@yopmail.com
+password : 123456
+
+* faux paiement Stripe
+N° carte : 4242 4242 4242 4242
+Expiration : 10/22
+CVC : 123
+
+
+
+Bonne visite !!!
 
 
 ## lien Heroku: 
