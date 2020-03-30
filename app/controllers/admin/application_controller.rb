@@ -9,7 +9,7 @@ module Admin
     before_action :authenticate_admin
     
     def authenticate_admin
-      if current_user.email == "khatba.husain@gmail.com" 
+      if current_user.email == "v-loue2020@yopmail.com" 
         return true
       else
         flash[:error] = "Vous n'êtes pas autorisé à accéder à cette session!"

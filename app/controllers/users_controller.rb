@@ -19,7 +19,8 @@ class UsersController < ApplicationController
   def update
     puts "update" * 100
     @user = current_user
-      if @user.update(params_user) &&  @user.update(city: params[:city])       
+      if @user.update(params_user) &&  @user.update(city: params[:city])   
+        @user.update(verified?: true)
         redirect_to user_path(current_user.id)
         flash[:success] = "Les modifications sont bien prises en compte ;)"
       else

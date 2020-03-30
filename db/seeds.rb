@@ -13,7 +13,7 @@
     date_disponible: Faker::Date.in_date_period(year: 2020, month: 4),
     date_end: Faker::Date.in_date_period(year: 2020, month: 5),
     user_id: nil,
-    bike_id: Bike.all.sample.id,
+    bike_id: Bike.all.ids.sample,
     prix: Random.rand(7),
     payed: false
     )
