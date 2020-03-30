@@ -1,5 +1,5 @@
 
-# V-loue : Location de vélo entre particuliers (version MVP)
+# V-loue : Location de vélo entre particuliers (version BETA 0.1)
 
 
 ## 1. Présentation 
@@ -67,7 +67,7 @@
 
 
 *  Compte Administrateur
-email : v-loue2020@yopmail.com
+email : v-loue2020@yopmail.com |
 password : 123456
 
 * faux paiement Stripe

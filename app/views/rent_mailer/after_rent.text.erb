@@ -1,13 +1,12 @@
 Merci <%= @user.first_name %> !
 
 <% @orders.each do |order| %>
-<% @days = (rent.date_end - rent.date_disponible)/60/60/24) %>
-      
+
 Vous avez une nouvelle location du <%= order.date_disponible.strftime("%d/%m/%Y") %> au <%= order.date_end.strftime("%d/%m/%Y") %>
  
 =================================================
 
-Vous avez payé <%= order.prix * @days %> €
+Vous avez payé <%= order.prix %> € par jour.
 
 <% end %>
 
