@@ -63,3 +63,4 @@ gem "aws-sdk-s3", require: false
 gem 'faker'
 gem "administrate"
 gem 'kaminari'
+gem 'mimemagic', '0.3.10'

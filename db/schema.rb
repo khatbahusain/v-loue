@@ -44,21 +44,6 @@ ActiveRecord::Schema.define(version: 2020_03_29_200349) do
     t.index ["user_id"], name: "index_bikes_on_user_id"
   end
 
-  create_table "carts", force: :cascade do |t|
-    t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_carts_on_user_id"
-  end
-
-  create_table "cities", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "name", null: false
-    t.string "code_postal", null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.bigint "sender_id"
     t.bigint "recipient_id"
@@ -93,11 +78,6 @@ ActiveRecord::Schema.define(version: 2020_03_29_200349) do
     t.index ["user_id"], name: "index_rents_on_user_id"
   end
 
-  create_table "table_cities", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "code_postal", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -116,8 +96,6 @@ ActiveRecord::Schema.define(version: 2020_03_29_200349) do
     t.boolean "is_admin?", default: false
     t.string "adresse", default: " "
     t.string "city"
-    t.bigint "city_id"
-    t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

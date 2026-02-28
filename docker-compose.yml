@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: veloo_development
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    command: bundle exec rails server -b 0.0.0.0 -p 3320
+    volumes:
+      - .:/app
+    ports:
+      - "3320:3320"
+    environment:
+      - DATABASE_URL=postgres://postgres:password@db:5432/veloo_development
+      - RAILS_ENV=development
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
